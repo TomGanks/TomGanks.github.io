@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jonathan Silva</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Jonathan Silva, game designer working across systems, narrative, and audio. Portfolio, demo reel, and contact.">
+<meta property="og:title" content="Jonathan Silva — Game Designer">
+<meta property="og:description" content="Game designer working across systems, narrative, and audio.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.jonathan-silva.com">
+<meta property="og:image" content="https://www.jonathan-silva.com/images/og.jpg">
+<link rel="icon" href="images/icon.png">
+<link rel="apple-touch-icon" href="images/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a designer's table. Hero deals a hand of three discipline cards; every project is a game card whose corner pips show the disciplines it proves, and the pips double as the filter. */
+:root{
+  --bg:#10151b; --surface:#161d25; --card:#1b242f; --fg:#e9edf1; --muted:#98a5b3; --line:#2a3542;
+  --accent:#f0b44c; --accent-ink:#1b1306;
+  --sys:#5ab0e6; --lvl:#7cc683; --nar:#c584e3; --aud:#f2795c; --art:#b9c2cc;
+  --shadow:0 18px 40px -18px rgba(0,0,0,.7);
+  --f-display:"Big Shoulders Display","Arial Narrow","Roboto Condensed",Impact,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --s-1:.8125rem; --s0:1rem; --s1:1.1875rem; --s2:1.5rem; --s3:2.25rem; --s4:clamp(3.4rem,9vw,6.6rem);
+  --radius:10px; --wrap:1120px;
+  --badge-dark:block; --badge-light:none;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#edf0f3; --surface:#f7f9fa; --card:#ffffff; --fg:#141a21; --muted:#56616e; --line:#d3dae1;
+    --accent:#a5650f; --accent-ink:#ffffff;
+    --sys:#1f77b2; --lvl:#2f8740; --nar:#8b3fb1; --aud:#c64528; --art:#6a7581;
+    --shadow:0 18px 36px -20px rgba(20,30,45,.35);
+    --badge-dark:none; --badge-light:block;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#edf0f3; --surface:#f7f9fa; --card:#ffffff; --fg:#141a21; --muted:#56616e; --line:#d3dae1;
+  --accent:#a5650f; --accent-ink:#ffffff;
+  --sys:#1f77b2; --lvl:#2f8740; --nar:#8b3fb1; --aud:#c64528; --art:#6a7581;
+  --shadow:0 18px 36px -20px rgba(20,30,45,.35);
+  --badge-dark:none; --badge-light:block;
+  color-scheme:light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:var(--s0);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+figure{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+[hidden]{display:none!important}
+h1,h2,h3{font-family:var(--f-display);font-weight:800;line-height:.95;margin:0;text-wrap:balance;letter-spacing:.005em}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--f-mono);font-size:var(--s-1);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.mono{font-family:var(--f-mono)}
+
+/* nav */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{font-family:var(--f-display);font-weight:900;font-size:1.35rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+.top nav{display:flex;gap:4px;flex-wrap:wrap}
+.top nav a{font-family:var(--f-mono);font-size:var(--s-1);text-decoration:none;color:var(--muted);padding:6px 10px;border-radius:6px}
+.top nav a:hover{color:var(--fg);background:var(--surface)}
+@media (max-width:560px){.top nav a.opt{display:none}}
+
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.875rem;font-weight:500;text-decoration:none;padding:10px 16px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;transition:border-color .15s,transform .15s}
+.btn:hover{border-color:var(--muted);transform:translateY(-1px)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn svg{width:16px;height:16px;flex:none}
+
+/* hero */
+.hero{padding-block:clamp(40px,7vw,88px) clamp(32px,5vw,64px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,5vw,64px);align-items:center}
+.hero h1{font-size:var(--s4);font-weight:900;text-transform:uppercase;letter-spacing:.01em;margin-top:14px}
+.hero .question{font-family:var(--f-display);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.1;margin-top:22px;max-width:22ch;color:var(--accent)}
+.hero .lead{margin-top:16px;max-width:56ch;color:var(--muted);font-size:var(--s1)}
+.hero .btns{margin-top:26px}
+.now{margin-top:28px;display:grid;gap:8px;max-width:440px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.now .row{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:var(--s-1);color:var(--muted)}
+.now strong{color:var(--fg);font-family:var(--f-body);font-size:var(--s0)}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar span{display:block;height:100%;width:30%;background:var(--sys)}
+
+/* the hand */
+.hand{position:relative;height:380px;display:flex;justify-content:center;align-items:flex-end;padding-bottom:10px}
+.dcard{position:absolute;bottom:10px;width:200px;height:290px;border-radius:14px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);padding:14px;display:flex;flex-direction:column;gap:10px;cursor:pointer;text-align:left;color:var(--fg);font:inherit;transform-origin:50% 120%;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.dcard::before{content:"";position:absolute;inset:6px;border-radius:9px;border:1px solid color-mix(in srgb,var(--c) 45%,transparent);pointer-events:none}
+.dcard .band{height:92px;border-radius:7px;background:
+  repeating-linear-gradient(135deg,color-mix(in srgb,var(--c) 30%,transparent) 0 2px,transparent 2px 9px),
+  color-mix(in srgb,var(--c) 18%,var(--card));display:grid;place-items:center}
+.dcard .band svg{width:44px;height:44px;color:var(--c)}
+.dcard{overflow:hidden}
+.dcard h3{font-size:1.65rem;text-transform:uppercase;color:var(--c);overflow-wrap:anywhere}
+.dcard p{font-size:.875rem;color:var(--muted);line-height:1.45}
+.dcard .foot{margin-top:auto;font-family:var(--f-mono);font-size:.75rem;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px}
+.dcard:nth-child(1){--c:var(--sys);transform:translateX(-120px) rotate(-11deg)}
+.dcard:nth-child(2){--c:var(--nar);transform:translateY(-14px)}
+.dcard:nth-child(3){--c:var(--aud);transform:translateX(120px) rotate(11deg)}
+.dcard:nth-child(1):hover,.dcard:nth-child(1):focus-visible{transform:translateX(-128px) translateY(-26px) rotate(-8deg);z-index:3}
+.dcard:nth-child(2):hover,.dcard:nth-child(2):focus-visible{transform:translateY(-40px);z-index:3}
+.dcard:nth-child(3):hover,.dcard:nth-child(3):focus-visible{transform:translateX(128px) translateY(-26px) rotate(8deg);z-index:3}
+@media (max-width:860px){
+  .hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .hand{height:300px;order:-1;max-width:420px;width:100%;margin-inline:auto}
+  .dcard{width:160px;height:236px;padding:11px;gap:8px}
+  .dcard .band{height:64px}
+  .dcard h3{font-size:1.3rem}
+  .dcard p{font-size:.78rem}
+  .dcard:nth-child(1){transform:translateX(-92px) rotate(-10deg)}
+  .dcard:nth-child(3){transform:translateX(92px) rotate(10deg)}
+  .dcard:nth-child(1):hover,.dcard:nth-child(1):focus-visible{transform:translateX(-96px) translateY(-18px) rotate(-7deg)}
+  .dcard:nth-child(3):hover,.dcard:nth-child(3):focus-visible{transform:translateX(96px) translateY(-18px) rotate(7deg)}
+}
+@media (max-width:400px){
+  .dcard{width:140px;height:214px}
+  .dcard:nth-child(1){transform:translateX(-78px) rotate(-10deg)}
+  .dcard:nth-child(3){transform:translateX(78px) rotate(10deg)}
+}
+
+/* sections */
+section{padding-block:clamp(48px,7vw,88px)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px;margin-bottom:28px}
+.sec-head h2{font-size:var(--s3);text-transform:uppercase}
+.sec-head p{color:var(--muted);max-width:52ch}
+.band-alt{background:var(--surface);border-block:1px solid var(--line)}
+
+/* filter */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:var(--s-1);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--c,var(--fg));background:color-mix(in srgb,var(--c,var(--fg)) 16%,var(--card))}
+.chip .pip{width:10px;height:10px}
+.count{font-family:var(--f-mono);font-size:var(--s-1);color:var(--muted);margin-left:4px}
+
+/* pips */
+.pips{display:flex;gap:5px}
+.pip{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 2px color-mix(in srgb,#000 18%,var(--c))}
+.pip[data-t="systems"]{--c:var(--sys)} .pip[data-t="level"]{--c:var(--lvl)} .pip[data-t="narrative"]{--c:var(--nar)} .pip[data-t="audio"]{--c:var(--aud)} .pip[data-t="art"]{--c:var(--art)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+
+/* image slots with designed fallback */
+.shot{position:relative;background:
+  repeating-linear-gradient(135deg,color-mix(in srgb,var(--c,var(--muted)) 14%,transparent) 0 2px,transparent 2px 11px),
+  color-mix(in srgb,var(--c,var(--muted)) 8%,var(--surface));border-radius:8px;overflow:hidden;aspect-ratio:16/9;max-width:100%}
+.shot img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
+.shot.contain img{object-fit:contain;background:var(--surface)}
+.shot figcaption{position:absolute;left:10px;right:10px;bottom:8px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);z-index:0}
+.shot.missing figcaption{z-index:2}
+.shot video{width:100%;height:100%;object-fit:contain;background:#000;position:relative;z-index:1;display:block}
+.gcard .thumbs{padding:0 4px}
+.gcard .thumbs button{width:52px}
+.clips{display:grid;gap:18px}
+.clip{display:grid;gap:8px;margin:0}
+.clip video{width:100%;aspect-ratio:16/9;max-width:100%;background:#000;border-radius:8px;display:block}
+.clip figcaption{display:grid;gap:2px}
+.clip figcaption b{font-weight:700}
+.clip figcaption span{color:var(--muted);font-size:.9rem}
+.clip .meta{font-family:var(--f-mono);font-size:.75rem;color:var(--muted)}
+.sub{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+audio{width:100%;max-width:100%}
+
+/* featured case cards */
+.featured{display:grid;gap:28px}
+.case{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.case .media{padding:14px;display:grid;gap:10px;align-content:start;background:var(--surface);border-right:1px solid var(--line)}
+.case .media .stage{display:grid}
+.case .media .stage > .shot{grid-area:1/1}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.thumbs button{flex:none;width:78px;padding:0;border:2px solid transparent;border-radius:7px;background:none;cursor:pointer}
+.thumbs button[aria-current="true"]{border-color:var(--accent)}
+.thumbs button{position:relative}
+.thumbs button.vid::after{content:"";position:absolute;inset:0;margin:auto;width:0;height:0;border-left:12px solid #fff;border-top:8px solid transparent;border-bottom:8px solid transparent;filter:drop-shadow(0 0 3px rgba(0,0,0,.8))}
+.case .tracks li{grid-template-columns:minmax(0,1fr);gap:6px;padding:10px 0}
+.case .tracks .t b{font-size:.95rem}
+.more-tracks summary{cursor:pointer;font-family:var(--f-mono);font-size:.8rem;color:var(--accent);padding:8px 0}
+.more-tracks .tracks{border-top:0}
+.thumbs .shot{border-radius:5px}
+.thumbs .shot figcaption{display:none}
+.case .body{padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.typeline{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.case h3{font-size:clamp(2rem,4vw,2.8rem);text-transform:uppercase}
+.case h3 em{font-style:normal;display:block;font-size:.5em;color:var(--muted);margin-top:4px;letter-spacing:.02em}
+.case .desc{color:var(--fg);max-width:60ch}
+.stats{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:4px 0 0;font-size:.9rem;border-top:1px solid var(--line);padding-top:14px}
+.stats dt{font-family:var(--f-mono);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-top:2px}
+.stats dd{margin:0}
+.case .btns{margin-top:auto;padding-top:6px}
+@media (max-width:860px){.case{grid-template-columns:minmax(0,1fr)}.case .media{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* more work: game cards */
+.more-head{margin:56px 0 18px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.more-head h3{font-size:var(--s2);text-transform:uppercase}
+.deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px}
+.gcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
+.gcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.gcard .shot{aspect-ratio:4/3}
+.gcard .titlebar{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:0 4px}
+.gcard h4{font-family:var(--f-display);font-weight:800;font-size:1.45rem;line-height:1;text-transform:uppercase;margin:0}
+.gcard .type{font-family:var(--f-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 4px;border-block:1px solid var(--line)}
+.gcard p{font-size:.92rem;color:var(--muted);padding:0 4px}
+.gcard .foot{margin-top:auto;display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);padding:8px 4px 2px;border-top:1px solid var(--line)}
+.gcard .foot a{color:var(--accent);text-decoration:none}
+.empty{padding:28px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
+
+/* listen & read */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+@media (max-width:760px){.two{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:clamp(18px,3vw,28px);display:flex;flex-direction:column;gap:16px;min-width:0}
+.panel h3{font-size:var(--s2);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.wave{height:56px;width:100%;color:var(--aud)}
+.credits{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.credits li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:12px 0;border-top:1px solid var(--line)}
+.credits li:first-child{border-top:0}
+.credits b{font-weight:700}
+.credits span{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);text-align:right}
+.credits small{grid-column:1/-1;color:var(--muted);font-size:.88rem}
+@media (max-width:440px){.credits li{grid-template-columns:minmax(0,1fr)}.credits span{text-align:left}}
+.note{font-size:.88rem;color:var(--muted)}
+
+/* toolkit */
+.tools{display:flex;flex-wrap:wrap;gap:10px}
+.tool{font-family:var(--f-mono);font-size:.85rem;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.tool small{color:var(--muted);margin-left:6px}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,56px);align-items:center}
+.about .shot{aspect-ratio:4/5;border-radius:14px}
+.about .text{display:grid;gap:16px;max-width:62ch}
+.about h2{font-size:var(--s3);text-transform:uppercase}
+.about blockquote{margin:0;font-family:var(--f-display);font-weight:600;font-size:1.6rem;line-height:1.15;color:var(--accent);border-left:3px solid var(--accent);padding-left:16px}
+@media (max-width:760px){.about{grid-template-columns:minmax(0,1fr)}.about .shot{max-width:360px}}
+
+/* contact */
+.contact h2{font-size:var(--s4);text-transform:uppercase}
+.contact .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:28px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:6px;min-width:0}
+.ccard .val{font-family:var(--f-mono);font-size:.95rem;overflow-wrap:anywhere;user-select:all}
+.ccard .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ccard .row .btn{padding:6px 12px;font-size:.8rem}
+footer{padding-block:28px;border-top:1px solid var(--line);color:var(--muted);font-family:var(--f-mono);font-size:.78rem}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+
+/* audio section */
+.block-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin:48px 0 16px}
+
+.block-h h3{font-size:var(--s2);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.block-h p{color:var(--muted);font-size:.92rem;max-width:56ch}
+.av-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
+.av-side{display:grid;gap:20px;min-width:0}
+@media (max-width:860px){.av-grid{grid-template-columns:minmax(0,1fr)}}
+.acard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:10px;min-width:0}
+.acard video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;display:block}
+.acard h4{font-family:var(--f-display);font-weight:800;font-size:1.4rem;line-height:1;text-transform:uppercase;margin:0}
+.acard.big h4{font-size:1.9rem}
+.acard p{color:var(--muted);font-size:.92rem}
+.meta{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.how{font-size:.9rem;color:var(--fg);border-left:2px solid var(--aud);padding-left:12px}
+.how b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--aud);display:block;margin-bottom:2px}
+.sfx{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.tracks{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.tracks li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:8px 28px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+.tracks .t{display:grid;gap:3px;min-width:0}
+.tracks .t b{font-weight:700;font-size:1.05rem}
+.tracks .t span{color:var(--muted);font-size:.9rem}
+.tracks .p{display:grid;gap:6px;min-width:0}
+@media (max-width:700px){.tracks li{grid-template-columns:minmax(0,1fr)}}
+.daw{margin:0;border-radius:10px;overflow:hidden;border:1px solid var(--line);max-width:min(100%,760px)}
+.daw figcaption{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);padding:8px 10px;background:var(--surface)}
+.cert{display:flex;align-items:center;gap:18px;padding:16px 20px;border:1px solid var(--line);border-radius:14px;background:var(--card);max-width:520px}
+.cert .badge{width:92px;flex:none;padding:6px}
+.cert .badge img{width:100%;height:auto}
+.cert .b-dark{display:var(--badge-dark)} .cert .b-light{display:var(--badge-light)}
+.cert b{font-family:var(--f-display);font-weight:800;font-size:1.35rem;text-transform:uppercase;line-height:1;display:block}
+.cert span{color:var(--muted);font-size:.9rem;display:block;margin-top:4px}
+.cert .id{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);margin-top:6px;overflow-wrap:anywhere}
+.listen-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-bottom:8px}
+.writing{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:760px){.writing{grid-template-columns:minmax(0,1fr)}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">J. Silva</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#listen" class="opt">Audio &amp; Writing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Game Designer · Systems · Narrative · Audio</div>
+      <h1>Jonathan Silva</h1>
+      <p class="question">“What will make a player want to come back?”</p>
+      <p class="lead">Every game I work on starts with that question. I’m a systems designer first: I prototype, test, and iterate until a game feels right in the player’s hands. Story, music, and sound are how I build the world around those systems.</p>
+      <div class="btns">
+        <a class="btn primary" href="#work">See the work</a>
+        <a class="btn" data-link="reel" href="#" target="_blank" rel="noopener" hidden>
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>Watch demo reel</a>
+        <a class="btn" id="resume" href="resume.pdf" target="_blank" rel="noopener" hidden>Résumé (PDF)</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+      <div class="now" aria-label="Current project">
+        <div class="row"><span>NOW BUILDING</span><span>~30%</span></div>
+        <strong>Luxenomicon: Fall of the Obligator</strong>
+        <div class="bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="Luxenomicon progress"><span></span></div>
+      </div>
+    </div>
+
+    <div class="hand" aria-label="Filter work by discipline">
+      <button class="dcard" type="button" data-filter="systems">
+        <div class="band"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="6"/><path d="M24 6v8M24 34v8M6 24h8M34 24h8M11 11l6 6M31 31l6 6M37 11l-6 6M17 31l-6 6"/></svg></div>
+        <h3>Systems</h3>
+        <p>Loops, rules, and card economies, from a roguelite to a full tabletop RPG.</p>
+        <div class="foot"><span>Luxenomicon · Organa</span><span data-count="systems">3</span></div>
+      </button>
+      <button class="dcard" type="button" data-filter="narrative">
+        <div class="band"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10 8h20l8 8v24H10z"/><path d="M30 8v8h8M16 22h16M16 28h16M16 34h10"/></svg></div>
+        <h3>Narrative</h3>
+        <p>Stories, characters, and worlds, from sci-fi to horror to folklore.</p>
+        <div class="foot"><span>Lyram · Tide Wars</span><span data-count="narrative">6</span></div>
+      </button>
+      <button class="dcard" type="button" data-filter="audio" data-jump="listen">
+        <div class="band"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 24h4M14 16v16M20 10v28M26 18v12M32 6v36M38 14v20M42 24h0"/></svg></div>
+        <h3>Audio</h3>
+        <p>Sound design and original music, written to support play and story. Wwise certified.</p>
+        <div class="foot"><span>Sound design · Scores</span><span>20+ clips</span></div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work" class="band-alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Selected work</div>
+        <h2>Projects</h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="systems" aria-pressed="false" style="--c:var(--sys)"><i class="pip" data-t="systems"></i>Systems</button>
+        <button class="chip" type="button" data-filter="level" aria-pressed="false" style="--c:var(--lvl)"><i class="pip" data-t="level"></i>Level</button>
+        <button class="chip" type="button" data-filter="narrative" aria-pressed="false" style="--c:var(--nar)"><i class="pip" data-t="narrative"></i>Narrative</button>
+        <button class="chip" type="button" data-filter="audio" aria-pressed="false" style="--c:var(--aud)"><i class="pip" data-t="audio"></i>Audio</button>
+        <button class="chip" type="button" data-filter="art" aria-pressed="false" style="--c:var(--art)"><i class="pip" data-t="art"></i>3D</button>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <div class="featured">
+
+      <!-- LYRAM -->
+      <article class="case" data-tags="level narrative audio" id="lyram">
+        <div class="media" style="--c:var(--nar)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><video controls playsinline preload="none" poster="images/poster-lyram.jpg"><source src="media/lyram-gameplay.mp4" type="video/mp4"></video><figcaption>Gameplay with my music · 5:54</figcaption></figure>
+            <figure class="shot" data-slide="1" hidden><img src="images/lyram-1.webp" alt="Lyram storybook page: Music and Environment" loading="lazy"><figcaption>Storybook · Music and Environment</figcaption></figure>
+            <figure class="shot contain" data-slide="2" hidden><img src="images/lyram-2.webp" alt="Lyram storybook character page: Fernan" loading="lazy"><figcaption>Character page · Fernan</figcaption></figure>
+            <figure class="shot contain" data-slide="3" hidden><img src="images/lyram-3.webp" alt="Lyram storybook character page: Darlyn" loading="lazy"><figcaption>Character page · Darlyn</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">2D Platformer · Music &amp; Story</span><span class="pips"><i class="pip" data-t="level" title="Level"></i><i class="pip" data-t="narrative" title="Narrative"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
+          <h3>Lyram</h3>
+          <p class="desc">A 2D platformer where music and story drive the play. I led four disciplines on the project: story, sound and music, character design, and level design. Press play for six minutes of gameplay with my music, then flip through the in-game storybook pages that introduce the world and its characters.</p>
+          <!-- ADD (recruiters look for this): 1) the design goal, 2) one problem you hit and how you solved it, 3) what you'd change. 2–4 sentences total. -->
+          <dl class="stats">
+            <dt>Role</dt><dd>Lead: story, sound &amp; music, characters, levels</dd>
+            <dt>Shows</dt><dd>Level design, narrative, original score</dd>
+          </dl>
+          <div class="btns">
+            <a class="btn primary" data-link="lyramVideo" href="#" target="_blank" rel="noopener" hidden>Watch gameplay</a>
+            <a class="btn" data-link="lyramPlay" href="#" target="_blank" rel="noopener" hidden>Play it</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- LUXENOMICON -->
+      <article class="case" data-tags="systems" id="luxenomicon">
+        <div class="media" style="--c:var(--sys)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><img src="images/luxenomicon-1.webp" alt="Luxenomicon battle with a hand of cards" loading="lazy"><figcaption>Battle with a hand of cards</figcaption></figure>
+            <figure class="shot contain" data-slide="1" hidden><img src="images/luxenomicon-2.webp" alt="Luxenomicon screenshot" loading="lazy"><figcaption>Luxenomicon · screenshot 2</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">RTS · Roguelite · Card Game</span><span class="pips"><i class="pip" data-t="systems" title="Systems"></i></span></div>
+          <h3>Luxenomicon<em>Fall of the Obligator</em></h3>
+          <p class="desc">My current project: a real-time strategy adventure built as a roguelite card game. It’s where my systems work lives right now, from the deck and run structure to how real-time pressure changes the way cards get played.</p>
+          <!-- ADD: the core loop in one sentence, plus a screenshot of a balance sheet / card list / flowchart. Hiring managers love seeing the spreadsheet behind the game. -->
+          <dl class="stats">
+            <dt>Status</dt><dd>In development · about 30% complete</dd>
+            <dt>Shows</dt><dd>Systems design, card design, game loops</dd>
+          </dl>
+          <div class="btns">
+            <a class="btn primary" data-link="luxenomiconPage" href="#" target="_blank" rel="noopener" hidden>Follow development</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- IPSC SHOOTER -->
+      <article class="case" data-tags="systems audio" id="ipsc">
+        <div class="media" style="--c:var(--sys)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><img src="images/ipsc-range.webp" alt="IPSC shooting range in Unreal Engine 5 with steel targets" loading="lazy"><figcaption>Range with steel targets</figcaption></figure>
+            <figure class="shot contain" data-slide="1" hidden><img src="images/ipsc-blueprint.webp" alt="Unreal Engine Blueprint graph for the shooting system" loading="lazy"><figcaption>Blueprint logic</figcaption></figure>
+            <figure class="shot contain" data-slide="2" hidden><img src="images/ipsc-content.webp" alt="Project folders: Blueprints, Level Assets, SFX, Targets, UI, Weapon Profiles" loading="lazy"><figcaption>Project structure</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Unreal Engine 5 · Shooting Sim</span><span class="pips"><i class="pip" data-t="systems" title="Systems"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
+          <h3>IPSC Shooter</h3>
+          <p class="desc">A practical-shooting range game in Unreal Engine 5, with steel and plate targets that react to hits, weapon profiles, and projectile Blueprints. I worked on the weapon and target systems and made the sound effects and a rock soundtrack.</p>
+          <dl class="stats">
+            <dt>Engine</dt><dd>Unreal Engine 5 · Blueprints</dd>
+            <dt>Shows</dt><dd>Gameplay systems, target physics, game audio</dd>
+          </dl>
+          <ul class="tracks">
+          <li><div class="t"><b>Target hits and misses</b><span>Each target material gets its own sound: steel plates, small steel, blocky targets, and duller variants, then the miss shots.</span><span class="meta">SFX montage · 0:18</span></div><div class="p"><audio controls preload="none" src="media/ipsc-targets-montage.mp3"></audio></div></li>
+          <li><div class="t"><b>Music 1</b><span class="meta">Rock soundtrack · 1:52</span></div><div class="p"><audio controls preload="none" src="media/ipsc-music-1.mp3"></audio></div></li>
+</ul>
+          <details class="more-tracks"><summary>3 more rock tracks</summary><ul class="tracks">
+          <li><div class="t"><b>Venom</b><span class="meta">Rock soundtrack · 1:49</span></div><div class="p"><audio controls preload="none" src="media/ipsc-venom.mp3"></audio></div></li>
+          <li><div class="t"><b>Stinger</b><span class="meta">Rock soundtrack · 1:42</span></div><div class="p"><audio controls preload="none" src="media/ipsc-stinger.mp3"></audio></div></li>
+          <li><div class="t"><b>Pincer</b><span class="meta">Rock soundtrack · 2:27</span></div><div class="p"><audio controls preload="none" src="media/ipsc-pincer.mp3"></audio></div></li>
+                    </ul></details>
+        </div>
+      </article>
+
+      <!-- ORGANA TALES -->
+      <article class="case" data-tags="systems narrative" id="organa">
+        <div class="media" style="--c:var(--lvl)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><img src="images/organa-banner.webp" alt="Organa Tales title banner" loading="lazy"><figcaption>Organa Tales</figcaption></figure>
+            <figure class="shot contain" data-slide="1" hidden><img src="images/organa-map.webp" alt="Organa Tales first continent map" loading="lazy"><figcaption>Organa Tales · continent map</figcaption></figure>
+            <figure class="shot contain" data-slide="2" hidden><img src="images/gamblers-grove.webp" alt="Map of Gambler's Grove, one of the largest cities" loading="lazy"><figcaption>Gambler’s Grove · city map</figcaption></figure>
+            <figure class="shot contain" data-slide="3" hidden><img src="images/organa-rules.webp" alt="Organa Tales rulebook page" loading="lazy"><figcaption>Rulebook page</figcaption></figure>
+            <figure class="shot contain" data-slide="4" hidden><img src="images/organa-website.webp" alt="Organa Tales website" loading="lazy"><figcaption>Organa Tales website</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Tabletop RPG · Rules &amp; World</span><span class="pips"><i class="pip" data-t="systems" title="Systems"></i><i class="pip" data-t="narrative" title="Narrative"></i></span></div>
+          <h3>Organa Tales</h3>
+          <p class="desc">An original tabletop RPG. The rulebook is a 30-page revision of an earlier ruleset and still growing. The world so far includes the first continent and a detailed map of Gambler’s Grove, one of its biggest cities. The game also has its own website.</p>
+          <dl class="stats">
+            <dt>Status</dt><dd>Rulebook in progress</dd>
+            <dt>Shows</dt><dd>Rules writing, worldbuilding, maps</dd>
+          </dl>
+          <div class="btns">
+            <a class="btn primary" href="https://docs.google.com/document/d/11k6bkew6y-Gj9xx-U_87nwutNHJuElmpIhWjphGI6XY/edit?usp=sharing" target="_blank" rel="noopener">Read the rulebook</a>
+            <a class="btn" data-link="organaSite" href="#" target="_blank" rel="noopener" hidden>Visit the site</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- INNOVATL -->
+      <article class="case" data-tags="narrative audio" id="innovatl">
+        <div class="media" style="--c:var(--aud)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><video controls playsinline preload="none" poster="images/poster-innovatl.jpg"><source src="media/innovatl-projection.mp4" type="video/mp4">InnovATL projection video</video><figcaption>InnovATL · projection</figcaption></figure>
+          </div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Showcase Project · Atlanta</span><span class="pips"><i class="pip" data-t="narrative" title="Narrative"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
+          <h3>InnovATL</h3>
+          <p class="desc">A project built to show off Atlanta, voiced by Ludacris. I led sound, music, and story design. Press play for the 15-second projection piece; sound on.</p>
+          <!-- ADD: what the player does, who it was made for, and what working with a celebrity VO line meant for your audio/story pipeline. -->
+          <dl class="stats">
+            <dt>Role</dt><dd>Lead: sound, music &amp; story design</dd>
+            <dt>Voice</dt><dd>Ludacris</dd>
+          </dl>
+          <div class="btns">
+            <a class="btn primary" data-link="innovatlVideo" href="#" target="_blank" rel="noopener" hidden>Watch</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="more-head">
+      <h3>More work</h3>
+      <div class="legend" aria-hidden="true">
+        <span><i class="pip" data-t="systems"></i>Systems</span><span><i class="pip" data-t="level"></i>Level</span><span><i class="pip" data-t="narrative"></i>Narrative</span><span><i class="pip" data-t="audio"></i>Audio</span><span><i class="pip" data-t="art"></i>3D</span>
+      </div>
+    </div>
+
+    <div class="deck">
+      <article class="gcard" data-tags="narrative level">
+        <div class="gallery"><div class="stage">
+          <figure class="shot" style="--c:var(--nar)"><img src="images/hullghosts-2.webp" alt="Hull Ghosts: ship cabin with a skeleton and blood" loading="lazy"><figcaption>Hull Ghosts · cabin</figcaption></figure>
+          <figure class="shot" style="--c:var(--nar)" hidden><img src="images/hullghosts-1.webp" alt="Hull Ghosts: dark ship hold" loading="lazy"><figcaption>Hull Ghosts · hold</figcaption></figure>
+        </div><div class="thumbs"></div></div>
+        <div class="titlebar"><h4>Hull Ghosts</h4><span class="pips"><i class="pip" data-t="narrative"></i><i class="pip" data-t="level"></i></span></div>
+        <div class="type">Horror · Story Game</div>
+        <p>A horror story game I’m building on my own. These are screenshots from the work in progress.</p>
+        <div class="foot"><span>Solo</span><span>In progress</span></div>
+      </article>
+
+      <article class="gcard" data-tags="narrative">
+        <div class="gallery"><div class="stage">
+          <figure class="shot" style="--c:var(--nar)"><img src="images/tidewars-1.webp" alt="Tide Wars loading screen design" loading="lazy"><figcaption>Loading screen</figcaption></figure>
+          <figure class="shot contain" style="--c:var(--nar)" hidden><img src="images/tidewars-2.webp" alt="Tide Wars antagonist development notes" loading="lazy"><figcaption>Antagonist development</figcaption></figure>
+          <figure class="shot contain" style="--c:var(--nar)" hidden><img src="images/tidewars-3.webp" alt="Tide Wars character sheets for Saluda and Gretho" loading="lazy"><figcaption>Character sheets</figcaption></figure>
+        </div><div class="thumbs"></div></div>
+        <div class="titlebar"><h4>Tide Wars</h4><span class="pips"><i class="pip" data-t="narrative"></i></span></div>
+        <div class="type">Story · Characters · Writing</div>
+        <p>I designed the story, characters, and writing. Shown: my loading-screen design, antagonist development notes, and character sheets.</p>
+        <div class="foot"><span>Story &amp; writing</span><span>3 images</span></div>
+      </article>
+
+      <article class="gcard" data-tags="systems">
+        <div class="gallery"><div class="stage">
+          <figure class="shot" style="--c:var(--sys)"><video controls playsinline preload="none" poster="images/poster-paindeck.jpg"><source src="media/paindeck-walkthrough.mp4" type="video/mp4"></video><figcaption>Walkthrough · 4:47</figcaption></figure>
+          <figure class="shot" style="--c:var(--sys)" hidden><img src="images/paindeck-1.webp" alt="Pain villain deck laid out in Tabletop Simulator" loading="lazy"><figcaption>Board layout</figcaption></figure>
+          <figure class="shot" style="--c:var(--sys)" hidden><img src="images/paindeck-2.webp" alt="Pain deck cards and guide in Tabletop Simulator" loading="lazy"><figcaption>Cards and guide</figcaption></figure>
+        </div><div class="thumbs"></div></div>
+        <div class="titlebar"><h4>Pain Deck</h4><span class="pips"><i class="pip" data-t="systems"></i></span></div>
+        <div class="type">Card Design · Villainous</div>
+        <p>A custom villain deck for the board game Villainous, built in Tabletop Simulator. The video walks through the deck and how it plays.</p>
+        <div class="foot"><span>Solo</span><span>Tabletop Simulator</span></div>
+      </article>
+
+      <article class="gcard" data-tags="team">
+        <div class="gallery"><div class="stage">
+          <figure class="shot" style="--c:var(--muted)"><img src="images/aura-1.webp" alt="Still from the Almighty Aura cutscene" loading="lazy"><figcaption>Cutscene still</figcaption></figure>
+          <figure class="shot contain" style="--c:var(--muted)" hidden><img src="images/aura-2.webp" alt="Almighty Aura title card" loading="lazy"><figcaption>Title card</figcaption></figure>
+        </div><div class="thumbs"></div></div>
+        <div class="titlebar"><h4>Almighty Aura</h4></div>
+        <div class="type">Team Project · Cutscene</div>
+        <p>A group project. The highlight here is a cutscene from the game.</p>
+        <div class="foot"><span>Team</span><a data-link="auraVideo" href="#" target="_blank" rel="noopener" hidden>Watch cutscene →</a></div>
+      </article>
+
+      <article class="gcard" data-tags="art">
+        <div class="gallery"><div class="stage">
+          <figure class="shot" style="--c:var(--art)"><img src="images/model-render.webp" alt="Treasure chest, lyre, and pirate gun rendered in Unreal Engine" loading="lazy"><figcaption>Final render</figcaption></figure>
+          <figure class="shot contain" style="--c:var(--art)" hidden><img src="images/model-wireframe.webp" alt="Wireframes of the lyre, pirate gun, and chest" loading="lazy"><figcaption>Wireframes</figcaption></figure>
+          <figure class="shot contain" style="--c:var(--art)" hidden><img src="images/uv-lyre.webp" alt="UV layout for the lyre body" loading="lazy"><figcaption>Lyre UVs</figcaption></figure>
+          <figure class="shot contain" style="--c:var(--art)" hidden><img src="images/uv-gun.webp" alt="UV layout for the pirate gun body" loading="lazy"><figcaption>Pirate gun UVs</figcaption></figure>
+          <figure class="shot" style="--c:var(--art)" hidden><img src="images/ue5-landscape.webp" alt="Desert landscape with cacti built in Unreal Engine 5" loading="lazy"><figcaption>UE5 desert landscape</figcaption></figure>
+        </div><div class="thumbs"></div></div>
+        <div class="titlebar"><h4>3D Props</h4><span class="pips"><i class="pip" data-t="art"></i></span></div>
+        <div class="type">Modeling · Unreal Render</div>
+        <p>A lyre, a pirate gun, and a treasure chest, modeled and UV-unwrapped in Maya and rendered in Unreal Engine. Also a desert landscape built in UE5.</p>
+        <div class="foot"><span>Maya · UE5</span><span>5 images</span></div>
+      </article>
+    </div>
+    <p class="empty" id="empty" hidden>No projects with that tag yet.</p>
+  </div>
+</section>
+
+<!-- ============ AUDIO & WRITING ============ -->
+<section id="listen">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Audio · made in Logic Pro with ES2 and Alchemy</div>
+        <h2>Sound &amp; Music</h2>
+      </div>
+      <p>Sound design and music are kept apart so each can be judged on its own. Every clip has a note on what I was going for and how I built it. Sound on.</p>
+    </div>
+    <div class="cert">
+      <div class="badge"><img class="b-dark" src="images/wwise-fundamentals-rev.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"><img class="b-light" src="images/wwise-fundamentals-rgb.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"></div>
+      <div><b>Wwise Fundamentals Certified</b><span>Audiokinetic · Wwise 2024.1 · September 2026</span><span class="id">Certificate ID b005a0b7-ef21-dc37-d82f-c47d3c56ede4</span></div>
+    </div>
+
+    <div class="block-h"><h3><i class="pip" data-t="audio"></i>Sound design to picture</h3></div>
+    <div class="av-grid">
+      <article class="acard big">
+        <video controls playsinline preload="none" poster="images/poster-final.jpg"><source src="media/sd-final-project.mp4" type="video/mp4"></video>
+        <div class="meta">Final project · 6:23 · Sound Design for Games</div>
+        <h4>Orcs Must Die! Deathtrap, re-sounded</h4>
+        <p>I replaced all the audio on six minutes of four-player co-op gameplay: voices, weapons, abilities, traps, orcs, UI cues, ambience, and music. I cut the footage so each player’s point of view gets its moment.</p>
+        <p class="how"><b>How I built it</b>I recorded four voice actors in a cardboard-and-blanket booth I built where they live, and let them improvise around each character’s iconic lines. Foley came from a wallet, a water bottle, rings, a cup and spoon, and scissors, shaped with pitch shifting, flanger, and granular effects. Traps got a heavier, blocky low end, and I field-recorded running water with a Zoom recorder for the map’s water mill.</p>
+        <p class="meta">Coursework: gameplay footage from the game, all audio by me and my voice cast</p>
+      </article>
+      <div class="av-side">
+        <article class="acard">
+          <video controls playsinline preload="none" poster="images/poster-runner.jpg"><source src="media/sd-mobile-runner.mp4" type="video/mp4"></video>
+          <div class="meta">Exam · 1:00</div>
+          <h4>Mobile runner game sounds</h4>
+          <p class="how"><b>How I built it</b>Eight synthesized effects in ES2 and Alchemy: merge, level up, level down, rolling, rails, hits, steps, and a win jingle. The level-up pitch climbs as balls keep merging, then resets with the stage. Rising sounds mean good, falling sounds mean bad, so players can hear how they’re doing.</p>
+        </article>
+        <article class="acard">
+          <video controls playsinline preload="none" poster="images/poster-trailer.jpg"><source src="media/sd-trailer-synth.mp4" type="video/mp4"></video>
+          <div class="meta">Lab · 0:19</div>
+          <h4>Trailer effects from scratch</h4>
+          <p>Every effect here was synthesized from scratch with subtractive synthesis: three different water sounds, a sword glint, and the fire near the end.</p>
+        </article>
+      </div>
+    </div>
+
+    <div class="block-h"><h3><i class="pip" data-t="audio"></i>Sound effects</h3><p>Layered in Logic from Alchemy and synth patches, with reverb, ring shifting, and bitcrushing.</p></div>
+    <div class="sfx">
+      <article class="acard">
+        <div class="meta">Spell · 0:11 · 3 layers</div>
+        <h4>Charm Spell</h4>
+        <audio controls preload="none" src="media/sfx-charm-spell.mp3"></audio>
+        <p>A spell that takes over the target’s mind. Dark mallets with distant reverb set the tension, then the tail turns bright and playful as the charm lands.</p>
+      </article>
+      <article class="acard">
+        <div class="meta">Soundscape · 0:37 · 7 layers</div>
+        <h4>Dreamscape Nightmare</h4>
+        <audio controls preload="none" src="media/sfx-dreamscape-nightmare.mp3"></audio>
+        <p>Footsteps of something unknown getting closer as a dream turns into a nightmare. Bitcrushed synth layers and ring shifting, with two copies set to clash so it feels harsh.</p>
+      </article>
+      <article class="acard">
+        <div class="meta">Alarm · 0:21 · 3 layers</div>
+        <h4>Distorted Alarm</h4>
+        <audio controls preload="none" src="media/sfx-distorted-alarm.mp3"></audio>
+        <p>An alarm in a dystopian facility, far off and distorted, swelling until the player escapes or gets caught. One layer is atmospheric, one locks to the tempo.</p>
+      </article>
+    </div>
+
+    <div class="block-h"><h3><i class="pip" data-t="narrative"></i>Music to picture</h3></div>
+    <div class="av-grid">
+      <article class="acard big">
+        <video controls playsinline preload="none" poster="images/poster-score.jpg"><source src="media/score-platformer.mp4" type="video/mp4"></video>
+        <div class="meta">Exam · 1:30 · Music Scoring for Games</div>
+        <h4>Platformer score</h4>
+      </article>
+      <div class="av-side">
+        <p class="how"><b>The idea</b>Combat gets its own faster pace, so the music marks the shift from exploring to fighting and helps build the pace. Each stage’s fights use slightly different tempos, so the score can grow with the world as the game goes on.</p>
+      </div>
+    </div>
+
+    <div class="block-h"><h3><i class="pip" data-t="narrative"></i>Music</h3></div>
+    <ul class="tracks">
+          <li><div class="t"><b>Hero vs. Villain</b><span>A hero theme on cellos, flutes, and harp arpeggios, a villain theme on horns and marching drums, then a battle that fights over both melodies. The combat uses a IV7–iii–ii7–I7 progression for tension.</span><span class="meta">Final project · 1:06</span></div><div class="p"><audio controls preload="none" src="media/music-hero-vs-villain.mp3"></audio></div></li>
+          <li><div class="t"><b>Game loop</b><span>A seamless loop for gameplay, built from ten tracks.</span><span class="meta">Lab · 1:37</span></div><div class="p"><audio controls preload="none" src="media/music-game-loop.mp3"></audio></div></li>
+          <li><div class="t"><b>Melody study</b><span class="meta">Lab · 0:19</span></div><div class="p"><audio controls preload="none" src="media/music-melody.mp3"></audio></div></li>
+    </ul>
+    <figure class="daw" style="margin-top:20px"><img src="images/daw-loop.webp" alt="Logic Pro session for the game loop, showing ten tracks" loading="lazy"><figcaption>Logic Pro session for the game loop</figcaption></figure>
+
+    <div class="block-h"><h3><i class="pip" data-t="audio"></i>Joymaker</h3><p>Music and sound I made over a weekend game jam for the first version of Joymaker, a psychological horror game set in an abandoned toy factory. The game later released on Steam. <a href="https://store.steampowered.com/app/3943260/Joymaker/" target="_blank" rel="noopener">See it on Steam →</a></p></div>
+    <ul class="tracks">
+          <li><div class="t"><b>The Magic Is Within You</b><span class="meta">Music · 1:05</span></div><div class="p"><audio controls preload="none" src="media/music-magic-within-you.mp3"></audio></div></li>
+          <li><div class="t"><b>Child’s Play</b><span class="meta">Music · 0:40</span></div><div class="p"><audio controls preload="none" src="media/music-childs-play.mp3"></audio></div></li>
+          <li><div class="t"><b>Carousel</b><span>Carousel music, distorted so something feels wrong.</span><span class="meta">Music + SFX · 0:30</span></div><div class="p"><audio controls preload="none" src="media/music-carousel.mp3"></audio></div></li>
+          <li><div class="t"><b>Footsteps with dark ambience</b><span class="meta">Ambience · 0:49</span></div><div class="p"><audio controls preload="none" src="media/amb-footsteps-dark.mp3"></audio></div></li>
+          <li><div class="t"><b>Rain and light thunder</b><span class="meta">Ambience · 2:21</span></div><div class="p"><audio controls preload="none" src="media/amb-rain-thunder.mp3"></audio></div></li>
+    </ul>
+
+    <div class="block-h"><h3><i class="pip" data-t="narrative"></i>Writing &amp; worlds</h3></div>
+    <div class="writing">
+      <ul class="credits">
+        <li><b>Organa Tales rulebook</b><span>Rules · Worldbuilding</span><small>30 pages and growing. <a href="https://docs.google.com/document/d/11k6bkew6y-Gj9xx-U_87nwutNHJuElmpIhWjphGI6XY/edit?usp=sharing" target="_blank" rel="noopener">Read it on Google Docs →</a></small></li>
+        <li><b>Lyram storybook</b><span>World · Characters</span><small>In-game pages for the world and its musicians. <a href="#lyram">See them →</a></small></li>
+        <li><b>Tide Wars</b><span>Story · Characters</span><small>Antagonist development and character sheets.</small></li>
+        <li><b>Hull Ghosts</b><span>Horror · Solo</span><small>A horror story game in progress.</small></li>
+        <li data-link-row="writingSample1" hidden><b data-link-label="writingSample1">Writing sample</b><span>Script</span><small><a data-link="writingSample1" href="#" target="_blank" rel="noopener">Read →</a></small></li>
+      </ul>
+      <div>
+        <div class="eyebrow" style="margin-bottom:12px">Toolkit</div>
+        <div class="tools">
+          <span class="tool">Unreal Engine</span>
+          <span class="tool">Unity</span>
+          <span class="tool">Logic Pro</span>
+          <span class="tool">Wwise <small>certified</small></span>
+          <span class="tool">Ableton Live</span>
+          <span class="tool">Autodesk Maya</span>
+          <span class="tool">Audacity</span>
+          <span class="tool">Premiere Pro</span>
+          <span class="tool">Photoshop</span>
+          <span class="tool">Tabletop Simulator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="band-alt">
+  <div class="wrap about">
+    <figure class="shot" style="--c:var(--accent)"><img src="images/portrait.webp" alt="Portrait of Jonathan Silva" loading="lazy"><figcaption>Jonathan Silva</figcaption></figure>
+    <div class="text">
+      <div class="eyebrow">About</div>
+      <h2>Creating pillars, then building worlds on them</h2>
+      <p>I’m Jonathan Silva, a game designer working across systems, story, and sound. I start with the mechanics, loops, and moments of choice that turn one session into a habit, then prototype and playtest until the game feels right.</p>
+      <p>Music and writing have always been part of how I build. From the futuristic landscapes of sci-fi to old myths and folklore, I want to make games that captivate players and resonate in sound.</p>
+      <blockquote>Music and writing are connected arts. Each one makes the other stronger.</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="eyebrow">Open to game design, narrative, and audio roles</div>
+    <h2>Let’s talk</h2>
+    <div class="grid">
+      <div class="ccard">
+        <span class="eyebrow">Email</span>
+        <span class="val" id="email-val">Me@Jonathan-Silva.com</span>
+        <div class="row"><a class="btn" href="mailto:Me@Jonathan-Silva.com">Send email</a><button class="btn" type="button" data-copy="email-val">Copy</button></div>
+      </div>
+      <div class="ccard">
+        <span class="eyebrow">LinkedIn</span>
+        <span class="val">linkedin.com/in/jobosilva</span>
+        <div class="row"><a class="btn" href="https://www.linkedin.com/in/jobosilva/" target="_blank" rel="noopener">Open profile</a></div>
+      </div>
+      <div class="ccard">
+        <span class="eyebrow">Discord</span>
+        <span class="val" id="discord-val">JonathanSwift</span>
+        <div class="row"><button class="btn" type="button" data-copy="discord-val">Copy username</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr">2026</span> Jonathan Silva</span><span>jonathan-silva.com</span></div>
+</footer>
+
+<script>
+/* ===================================================================
+   EDIT YOUR LINKS HERE. Paste a URL between the quotes and the matching
+   button appears on the site. Leave "" to keep that button hidden.
+   =================================================================== */
+const LINKS = {
+  reel:            "",  // demo reel (YouTube, unlisted is fine)
+  lyramVideo:      "",  // Lyram gameplay video
+  lyramPlay:       "",  // playable Lyram build (itch.io)
+  luxenomiconPage: "",  // itch.io / Steam / devlog for Luxenomicon
+  innovatlVideo:   "",  // InnovATL video
+  auraVideo:       "",  // Almighty Aura cutscene
+  audioReel:       "",  // sound design reel (sound only, no music)
+  musicPlaylist:   "",  // SoundCloud / Bandcamp / YouTube playlist of your music
+  organaSite:      "",  // Organa Tales website
+  writingSample1:  "",  // a script / dialogue sample (PDF or Google Doc)
+};
+const WRITING_SAMPLE_1_TITLE = "Dialogue sample"; // label shown for writingSample1
+
+/* Images: load from /images first, then fall back to the old Squarespace copy. */
+const CDN = "https://images.squarespace-cdn.com/content/v1/650e37d661a2382c87e1cd92/";
+function imgFallback(img){
+  if (img.dataset.cdn && !img.dataset.tried){
+    img.dataset.tried = "1";
+    img.src = CDN + img.dataset.cdn + "?format=1500w";
+  } else {
+    img.hidden = true;
+    img.closest(".shot")?.classList.add("missing");
+  }
+}
+document.querySelectorAll("img").forEach(img=>{
+  img.addEventListener("error", ()=>imgFallback(img));
+  if (img.complete && img.naturalWidth === 0 && img.getAttribute("src")) imgFallback(img);
+});
+
+/* Links */
+document.querySelectorAll("[data-link]").forEach(a=>{
+  const url = LINKS[a.dataset.link];
+  if (url){ a.href = url; a.hidden = false; }
+});
+if (LINKS.writingSample1){
+  document.querySelectorAll('[data-link-row="writingSample1"]').forEach(r=>r.hidden=false);
+  document.querySelectorAll('[data-link-label="writingSample1"]').forEach(r=>r.textContent=WRITING_SAMPLE_1_TITLE);
+}
+
+/* Résumé button appears only if resume.pdf exists next to this page */
+fetch("resume.pdf",{method:"HEAD"}).then(r=>{
+  const type = r.headers.get("content-type")||"";
+  if (r.ok && type.includes("pdf")) document.getElementById("resume").hidden = false;
+}).catch(()=>{});
+
+/* Galleries */
+document.querySelectorAll(".stage").forEach(stage=>{
+  const slides = [...stage.querySelectorAll(":scope > .shot")];
+  const bar = stage.parentElement.querySelector(":scope > .thumbs");
+  if (!bar || slides.length < 2) return;
+  slides.forEach((s,i)=>{
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", "Show image " + (i+1));
+    if (i===0) b.setAttribute("aria-current","true");
+    const v = s.querySelector("video");
+    const clone = document.createElement("figure");
+    clone.className = s.className; clone.style.cssText = s.style.cssText;
+    const ci = document.createElement("img");
+    ci.src = v ? v.poster : s.querySelector("img").getAttribute("src");
+    ci.loading = "lazy"; ci.alt = "";
+    clone.appendChild(ci);
+    if (v){ b.classList.add("vid"); b.setAttribute("aria-label","Show video"); }
+    b.appendChild(clone);
+    b.addEventListener("click", ()=>{
+      slides.forEach(x=>x.querySelector("video")?.pause());
+      slides.forEach((x,j)=>x.hidden = j!==i);
+      bar.querySelectorAll("button").forEach((x,j)=>x.setAttribute("aria-current", j===i ? "true":"false"));
+    });
+    bar.appendChild(b);
+  });
+});
+
+/* Filtering: chips, hero cards, and #systems / #narrative / #audio / #level / #art links */
+const TAGS = ["systems","level","narrative","audio","art"];
+const items = [...document.querySelectorAll("[data-tags]")];
+const chips = [...document.querySelectorAll(".chip")];
+function applyFilter(tag, scroll){
+  let shown = 0;
+  items.forEach(el=>{
+    const ok = tag==="all" || el.dataset.tags.split(" ").includes(tag);
+    el.hidden = !ok; if (ok) shown++;
+  });
+  chips.forEach(c=>c.setAttribute("aria-pressed", c.dataset.filter===tag ? "true":"false"));
+  document.getElementById("count").textContent = tag==="all" ? items.length + " projects" : shown + " of " + items.length;
+  document.getElementById("empty").hidden = shown>0;
+  const featuredVisible = [...document.querySelectorAll(".case")].some(e=>!e.hidden);
+  document.querySelector(".featured").hidden = !featuredVisible;
+  if (scroll) document.getElementById("work").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth"});
+}
+chips.forEach(c=>c.addEventListener("click", ()=>applyFilter(c.dataset.filter,false)));
+document.querySelectorAll(".dcard").forEach(c=>c.addEventListener("click", ()=>{
+  if (c.dataset.jump){ applyFilter("all",false); document.getElementById(c.dataset.jump).scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth"}); return; }
+  applyFilter(c.dataset.filter,true);
+}));
+document.querySelectorAll("[data-count]").forEach(el=>{
+  el.textContent = items.filter(i=>i.dataset.tags.split(" ").includes(el.dataset.count)).length + " projects";
+});
+const h = (location.hash||"").slice(1).toLowerCase();
+applyFilter(TAGS.includes(h) ? h : "all", TAGS.includes(h));
+
+/* Copy buttons */
+document.querySelectorAll("[data-copy]").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    const el = document.getElementById(b.dataset.copy);
+    const done = ()=>{ const t=b.textContent; b.textContent="Copied"; setTimeout(()=>b.textContent=t,1400); };
+    try{
+      navigator.clipboard.writeText(el.textContent.trim()).then(done).catch(()=>selectText(el));
+    }catch(e){ selectText(el); }
+  });
+});
+function selectText(el){ const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+
+/* Only one clip plays at a time */
+document.addEventListener("play", e=>{ document.querySelectorAll("audio,video").forEach(m=>{ if (m!==e.target) m.pause(); }); }, true);
+document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

@@ -287,6 +287,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .cert span{color:var(--muted);font-size:.9rem;display:block;margin-top:4px}
 .cert .id{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);margin-top:6px;overflow-wrap:anywhere}
 .listen-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-bottom:8px}
+.audio-lib{margin-top:72px;padding-top:48px;border-top:1px solid var(--line)}
+.audio-lib.first{margin-top:8px;padding-top:0;border-top:0;margin-bottom:64px}
+.audio-lib .acard{background:var(--card)}
 .writing{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
 @media (max-width:760px){.writing{grid-template-columns:minmax(0,1fr)}}
 
@@ -303,7 +306,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <a class="brand" href="#top">J. Silva</a>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
-      <a href="#listen" class="opt">Audio &amp; Writing</a>
+      <a href="#audio-library" class="opt">Audio</a>
+      <a href="#writing" class="opt">Writing</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -347,11 +351,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <p>Stories, characters, and worlds, from sci-fi to horror to folklore.</p>
         <div class="foot"><span>Lyram · Tide Wars</span><span data-count="narrative">6</span></div>
       </button>
-      <button class="dcard" type="button" data-filter="audio" data-jump="listen">
+      <button class="dcard" type="button" data-filter="audio">
         <div class="band"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 24h4M14 16v16M20 10v28M26 18v12M32 6v36M38 14v20M42 24h0"/></svg></div>
         <h3>Audio</h3>
         <p>Sound design and original music, written to support play and story. Wwise certified.</p>
-        <div class="foot"><span>Sound design · Scores</span><span>20+ clips</span></div>
+        <div class="foot"><span>Lyram · IPSC · Library</span><span>20+ clips</span></div>
       </button>
     </div>
   </div>
@@ -579,15 +583,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </article>
     </div>
     <p class="empty" id="empty" hidden>No projects with that tag yet.</p>
-  </div>
-</section>
 
-<!-- ============ AUDIO & WRITING ============ -->
-<section id="listen">
-  <div class="wrap">
-    <div class="sec-head">
+    <div class="audio-lib" id="audio-library" data-lib="audio">
+    <div class="sec-head lib-head">
       <div>
-        <div class="eyebrow">Audio · made in Logic Pro with ES2 and Alchemy</div>
+        <div class="eyebrow">Audio library · made in Logic Pro with ES2 and Alchemy</div>
         <h2>Sound &amp; Music</h2>
       </div>
       <p>Sound design and music are kept apart so each can be judged on its own. Every clip has a note on what I was going for and how I built it. Sound on.</p>
@@ -673,8 +673,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <li><div class="t"><b>Footsteps with dark ambience</b><span class="meta">Ambience · 0:49</span></div><div class="p"><audio controls preload="none" src="media/amb-footsteps-dark.mp3"></audio></div></li>
           <li><div class="t"><b>Rain and light thunder</b><span class="meta">Ambience · 2:21</span></div><div class="p"><audio controls preload="none" src="media/amb-rain-thunder.mp3"></audio></div></li>
     </ul>
+    </div>
+  </div>
+</section>
 
-    <div class="block-h"><h3><i class="pip" data-t="narrative"></i>Writing &amp; worlds</h3></div>
+<!-- ============ WRITING ============ -->
+<section id="writing">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Writing, worlds, and tools</div>
+        <h2>Writing &amp; Toolkit</h2>
+      </div>
+    </div>
     <div class="writing">
       <ul class="credits">
         <li><b>Organa Tales rulebook</b><span>Rules · Worldbuilding</span><small>30 pages and growing. <a href="https://docs.google.com/document/d/11k6bkew6y-Gj9xx-U_87nwutNHJuElmpIhWjphGI6XY/edit?usp=sharing" target="_blank" rel="noopener">Read it on Google Docs →</a></small></li>
@@ -840,16 +851,28 @@ function applyFilter(tag, scroll){
   document.getElementById("empty").hidden = shown>0;
   const featuredVisible = [...document.querySelectorAll(".case")].some(e=>!e.hidden);
   document.querySelector(".featured").hidden = !featuredVisible;
+  const moreVisible = [...document.querySelectorAll(".gcard")].some(e=>!e.hidden);
+  document.querySelector(".more-head").hidden = !moreVisible;
+  document.querySelector(".deck").hidden = !moreVisible;
+  /* the audio library belongs to "All" and "Audio"; for Audio it leads */
+  const lib = document.getElementById("audio-library");
+  const libOn = tag==="all" || tag==="audio";
+  lib.hidden = !libOn;
+  const featured = document.querySelector(".featured");
+  if (tag==="audio"){ featured.parentNode.insertBefore(lib, featured); lib.classList.add("first"); }
+  else { document.getElementById("empty").after(lib); lib.classList.remove("first"); }
+  if (tag==="audio") document.getElementById("count").textContent = shown + " projects + audio library";
+  if (libOn) document.getElementById("empty").hidden = true;
   if (scroll) document.getElementById("work").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth"});
 }
 chips.forEach(c=>c.addEventListener("click", ()=>applyFilter(c.dataset.filter,false)));
-document.querySelectorAll(".dcard").forEach(c=>c.addEventListener("click", ()=>{
-  if (c.dataset.jump){ applyFilter("all",false); document.getElementById(c.dataset.jump).scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth"}); return; }
-  applyFilter(c.dataset.filter,true);
-}));
+document.querySelectorAll(".dcard").forEach(c=>c.addEventListener("click", ()=>applyFilter(c.dataset.filter,true)));
 document.querySelectorAll("[data-count]").forEach(el=>{
   el.textContent = items.filter(i=>i.dataset.tags.split(" ").includes(el.dataset.count)).length + " projects";
 });
+/* nav "Audio" link: show the library even if another filter is on */
+document.querySelectorAll('a[href="#audio-library"]').forEach(a=>a.addEventListener("click", ()=>{ if (document.getElementById("audio-library").hidden) applyFilter("all",false); }));
+window.addEventListener("hashchange", ()=>{ const t=(location.hash||"").slice(1).toLowerCase(); if (TAGS.includes(t)) applyFilter(t,true); });
 const h = (location.hash||"").slice(1).toLowerCase();
 applyFilter(TAGS.includes(h) ? h : "all", TAGS.includes(h));
 

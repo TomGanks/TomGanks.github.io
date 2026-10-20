@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.jonathan-silva.com">
 <meta property="og:image" content="https://www.jonathan-silva.com/images/og.jpg">
-<link rel="icon" href="images/icon.png">
+<link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
 <link rel="apple-touch-icon" href="images/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -204,15 +204,18 @@ audio{width:100%;max-width:100%}
 /* more work: game cards */
 .more-head{margin:56px 0 18px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .more-head h3{font-size:var(--s2);text-transform:uppercase}
-.deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px}
-.gcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:10px;transition:transform .2s,box-shadow .2s}
+.deck{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,480px),1fr));gap:20px}
+.gcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-rows:auto auto auto 1fr auto;column-gap:18px;row-gap:8px;align-items:start;transition:transform .2s,box-shadow .2s}
+.gcard>.gallery{grid-column:1;grid-row:1/-1;align-self:center}
+.gcard>:not(.gallery){grid-column:2}
+@media (max-width:600px){.gcard{grid-template-columns:minmax(0,1fr);grid-template-rows:none}.gcard>.gallery,.gcard>:not(.gallery){grid-column:1;grid-row:auto}}
 .gcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.gcard .shot{aspect-ratio:4/3}
+.gcard .shot{aspect-ratio:16/10}
 .gcard .titlebar{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:0 4px}
 .gcard h4{font-family:var(--f-display);font-weight:800;font-size:1.45rem;line-height:1;text-transform:uppercase;margin:0}
 .gcard .type{font-family:var(--f-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding:6px 4px;border-block:1px solid var(--line)}
 .gcard p{font-size:.92rem;color:var(--muted);padding:0 4px}
-.gcard .foot{margin-top:auto;display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);padding:8px 4px 2px;border-top:1px solid var(--line)}
+.gcard .foot{align-self:end;display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);padding:8px 4px 2px;border-top:1px solid var(--line)}
 .gcard .foot a{color:var(--accent);text-decoration:none}
 .empty{padding:28px;border:1px dashed var(--line);border-radius:12px;color:var(--muted);text-align:center}
 
@@ -256,6 +259,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 
 
+/* tab reels */
+.tab-reels:not(:has(.reel-feature:not([hidden]))){display:none}
+.tab-reels{margin-bottom:28px}
+.reel-feature{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.reel-feature video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;display:block}
+.reel-feature .body{padding:clamp(18px,3vw,30px);display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0}
+.reel-feature .eyebrow{display:flex;align-items:center;gap:8px}
+.reel-feature h3{font-size:clamp(1.8rem,3.5vw,2.6rem);text-transform:uppercase}
+.reel-feature p{color:var(--muted)}
+@media (max-width:860px){.reel-feature{grid-template-columns:minmax(0,1fr)}}
 /* reels */
 .reels-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
 .reel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px;align-content:start;min-width:0}
@@ -299,6 +312,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .cert .id{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);margin-top:6px;overflow-wrap:anywhere}
 .listen-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-bottom:8px}
 .audio-lib{margin-top:72px;padding-top:48px;border-top:1px solid var(--line)}
+.audio-lead{margin-bottom:64px}
+.audio-extra{margin-top:8px}
 .audio-lib.first{margin-top:8px;padding-top:0;border-top:0;margin-bottom:64px}
 .audio-lib .acard{background:var(--card)}
 .writing{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
@@ -316,7 +331,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <a class="brand" href="#top">J. Silva</a>
     <nav aria-label="Sections">
-      <a href="#reels" class="opt">Reels</a>
       <a href="#work">Work</a>
       <a href="#audio-library" class="opt">Audio</a>
       <a href="#writing" class="opt">Writing</a>
@@ -338,8 +352,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <p class="lead">Every game I work on starts with that question. I’m a systems designer first: I prototype, test, and iterate until a game feels right in the player’s hands. Story, music, and sound are how I build the world around those systems.</p>
       <div class="btns">
         <a class="btn primary" href="#work">See the work</a>
-        <a class="btn" href="#reels">
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>Watch the reels</a>
         <a class="btn" id="resume" href="resume.pdf" target="_blank" rel="noopener" hidden>Résumé (PDF)</a>
         <a class="btn" href="#contact">Get in touch</a>
       </div>
@@ -367,41 +379,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="band"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 24h4M14 16v16M20 10v28M26 18v12M32 6v36M38 14v20M42 24h0"/></svg></div>
         <h3>Audio</h3>
         <p>Sound design and original music, written to support play and story. Wwise certified.</p>
-        <div class="foot"><span>Lyram · IPSC · Library</span><span>20+ clips</span></div>
+        <div class="foot"><span>Lyram · IPSC · Library</span><span>Reel + library</span></div>
       </button>
-    </div>
-  </div>
-</section>
-
-<!-- ============ REELS ============ -->
-<section id="reels">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="eyebrow">Watch first</div>
-        <h2>Reels</h2>
-      </div>
-      <p>One short reel per discipline. Each clip names the project and what I did on it.</p>
-    </div>
-    <div class="reels-grid">
-      <article class="reel">
-        <video controls playsinline preload="none" poster="images/poster-reel-systems.jpg"><source src="media/reel-systems.mp4" type="video/mp4"></video>
-        <h3><i class="pip" data-t="systems"></i>Systems</h3>
-        <div class="meta">1:10 · Music: my IPSC rock track “Pincer”</div>
-        <p>Opens on Pain Deck in Tabletop Simulator, then Lyram’s level flow and traversal, Luxenomicon, IPSC Shooter, Mermory, and Organa Tales.</p>
-      </article>
-      <article class="reel">
-        <video controls playsinline preload="none" poster="images/poster-reel-narrative.jpg"><source src="media/reel-narrative.mp4" type="video/mp4"></video>
-        <h3><i class="pip" data-t="narrative"></i>Narrative</h3>
-        <div class="meta">1:12 · Music: my “Hero vs. Villain” score</div>
-        <p>Lyram’s story and characters, the world of Organa, Hull Ghosts, Tide Wars, and InnovATL.</p>
-      </article>
-      <article class="reel">
-        <video controls playsinline preload="none" poster="images/poster-reel-audio.jpg"><source src="media/reel-audio.mp4" type="video/mp4"></video>
-        <h3><i class="pip" data-t="audio"></i>Sound &amp; Music</h3>
-        <div class="meta">2:00 · Sound design first, then music</div>
-        <p>A 32-second Orcs Must Die! Deathtrap sound redesign, synthesized trailer effects, layered SFX, and mobile game sounds, then music for Lyram, InnovATL, and a platformer.</p>
-      </article>
     </div>
   </div>
 </section>
@@ -425,7 +404,36 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </div>
     </div>
 
-    <div class="featured">
+    <div class="tab-reels">
+      <article class="reel-feature" data-reel="systems" hidden>
+        <video controls playsinline preload="none" poster="images/poster-reel-systems.jpg"><source src="media/reel-systems.mp4" type="video/mp4"></video>
+        <div class="body">
+          <div class="eyebrow"><i class="pip" data-t="systems"></i> Reel · 1:10</div>
+          <h3>Systems reel</h3>
+          <p>Opens on Pain Deck in Tabletop Simulator, then Lyram’s level flow and traversal, Luxenomicon, IPSC Shooter, Mermory, and Organa Tales. Music: my IPSC rock track “Pincer”.</p>
+        </div>
+      </article>
+      <article class="reel-feature" data-reel="narrative" hidden>
+        <video controls playsinline preload="none" poster="images/poster-reel-narrative.jpg"><source src="media/reel-narrative.mp4" type="video/mp4"></video>
+        <div class="body">
+          <div class="eyebrow"><i class="pip" data-t="narrative"></i> Reel · 1:12</div>
+          <h3>Narrative reel</h3>
+          <p>Lyram’s story and characters, the world of Organa, Hull Ghosts, Tide Wars, and InnovATL. Music: my “Hero vs. Villain” score.</p>
+        </div>
+      </article>
+      <article class="reel-feature" data-reel="audio" hidden>
+        <video controls playsinline preload="none" poster="images/poster-reel-audio.jpg"><source src="media/reel-audio.mp4" type="video/mp4"></video>
+        <div class="body">
+          <div class="eyebrow"><i class="pip" data-t="audio"></i> Reel · 2:00</div>
+          <h3>Sound &amp; music reel</h3>
+          <p>A 32-second Orcs Must Die! Deathtrap sound redesign, synthesized trailer effects, layered SFX, and mobile game sounds, then music for Lyram, InnovATL, and a platformer.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="featured audio-lead" id="audio-lead" hidden></div>
+
+    <div class="featured" id="featured-main">
 
       <!-- LYRAM -->
       <article class="case" data-tags="level narrative audio" id="lyram">
@@ -447,9 +455,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="body">
           <div class="typeline"><span class="eyebrow">2D Puzzle Platformer · Team of 4</span><span class="pips"><i class="pip" data-t="level" title="Level"></i><i class="pip" data-t="narrative" title="Narrative"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
           <h3>Lyram</h3>
-          <p class="desc">Darlyn, a young musician, sets out to recover her late father’s magical instruments from the Soul Tribe. Each instrument is a tool: the horn breaks terrain, the clarinet fires notes at levers, and the soundtrack gains each instrument as you find it. I led story, sound and music, character design, and level design.</p>
+          <p class="desc">Darlyn, a young musician, sets out to recover her late father’s magical instruments from the Soul Tribe. Each instrument is a tool: the horn breaks terrain, and the clarinet fires notes at levers. I led story, sound and music, character design, and level design.</p>
+          <p class="how"><b>Sound as a mechanic</b>Every instrument Darlyn recovers is both a new ability and a new voice in the soundtrack, so the score grows as the player does and the music always tells you how far you’ve come.</p>
           <p class="desc" style="color:var(--muted)">Press play for six minutes of gameplay with my music, then flip through our studio pitch: the level flow, the map of Organa Land (the same world as my tabletop RPG), and the characters.</p>
-          <!-- ADD (recruiters look for this): 1) the design goal, 2) one problem you hit and how you solved it, 3) what you'd change. 2–4 sentences total. -->
           <dl class="stats">
             <dt>Role</dt><dd>Lead: story, sound &amp; music, characters, levels</dd>
             <dt>Shows</dt><dd>Level flow, worldbuilding, characters, original score</dd>
@@ -481,6 +489,43 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           </dl>
           <div class="btns">
             <a class="btn primary" data-link="luxenomiconPage" href="#" target="_blank" rel="noopener" hidden>Follow development</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- JOYMAKER -->
+      <article class="case" data-tags="audio" id="joymaker">
+        <div class="media" style="--c:var(--aud)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><img src="images/joymaker-4.webp" alt="Joymaker: a child's to-do journal open beside a lantern" loading="lazy"><figcaption>The to-do journal</figcaption></figure>
+            <figure class="shot" data-slide="1" hidden><img src="images/joymaker-2.webp" alt="Joymaker: top-down view of a toymaker's workbench with gears and blueprints" loading="lazy"><figcaption>Toymaker’s workbench</figcaption></figure>
+            <figure class="shot" data-slide="2" hidden><img src="images/joymaker-5.webp" alt="Joymaker: flipping a breaker on a brick wall by lantern light" loading="lazy"><figcaption>Flipping the breaker</figcaption></figure>
+            <figure class="shot" data-slide="3" hidden><img src="images/joymaker-6.webp" alt="Joymaker: a bottle labeled Happy Pills on a crate" loading="lazy"><figcaption>“Happy Pills”</figcaption></figure>
+            <figure class="shot" data-slide="4" hidden><img src="images/joymaker-3.webp" alt="Joymaker: dark factory floor with a figure in the distance" loading="lazy"><figcaption>The factory floor</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Psychological Horror · Released on Steam</span><span class="pips"><i class="pip" data-t="audio" title="Audio"></i></span></div>
+          <h3>Joymaker<em>by Several Confused Clowns</em></h3>
+          <p class="desc">A story-driven psychological horror game set in an abandoned toy factory, released on Steam in November 2025. I made the music and sound for its first version, built over a weekend game jam.</p>
+          <p class="how"><b>Design goal</b>Make a place built for children feel wrong. Playful, childlike themes like the carousel tune get distorted until the comfort turns uneasy, while footsteps, dark ambience, and rain keep the empty factory alive around the player.</p>
+          <dl class="stats">
+            <dt>Role</dt><dd>Music &amp; sound (game jam version)</dd>
+            <dt>Shows</dt><dd>Horror scoring, ambience, mood</dd>
+          </dl>
+          <ul class="tracks">
+          <li><div class="t"><b>The Magic Is Within You</b><span class="meta">Music · 1:05</span></div><div class="p"><audio controls preload="none" src="media/music-magic-within-you.mp3"></audio></div></li>
+          <li><div class="t"><b>Child’s Play</b><span class="meta">Music · 0:40</span></div><div class="p"><audio controls preload="none" src="media/music-childs-play.mp3"></audio></div></li>
+          <li><div class="t"><b>Carousel</b><span>A carousel tune, distorted so something feels wrong.</span><span class="meta">Music + SFX · 0:30</span></div><div class="p"><audio controls preload="none" src="media/music-carousel.mp3"></audio></div></li>
+          </ul>
+          <details class="more-tracks"><summary>2 ambience tracks</summary><ul class="tracks">
+          <li><div class="t"><b>Footsteps with dark ambience</b><span class="meta">Ambience · 0:49</span></div><div class="p"><audio controls preload="none" src="media/amb-footsteps-dark.mp3"></audio></div></li>
+          <li><div class="t"><b>Rain and light thunder</b><span class="meta">Ambience · 2:21</span></div><div class="p"><audio controls preload="none" src="media/amb-rain-thunder.mp3"></audio></div></li>
+          </ul></details>
+          <p class="desc" style="color:var(--muted);font-size:.8rem">Screenshots are of the released game, from its Steam page.</p>
+          <div class="btns">
+            <a class="btn primary" href="https://store.steampowered.com/app/3943260/Joymaker/" target="_blank" rel="noopener">See it on Steam</a>
           </div>
         </div>
       </article>
@@ -549,9 +594,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="media" style="--c:var(--nar)">
           <div class="stage">
             <figure class="shot" data-slide="0"><img src="images/hullghosts-2.webp" alt="Hull Ghosts: ship cabin with a skeleton and blood" loading="lazy"><figcaption>Ship cabin</figcaption></figure>
-            <figure class="shot contain" data-slide="1" hidden><img src="images/hullghosts-level-layout.webp" alt="Level layout with a legend for locked doors, hidden treasure, the final boss, enemy cultists, a resting place, keys, and traps" loading="lazy"><figcaption>Level layout with legend</figcaption></figure>
-            <figure class="shot contain" data-slide="2" hidden><img src="images/hullghosts-blockout.webp" alt="Top-down view of the level blockout in engine" loading="lazy"><figcaption>Level blockout</figcaption></figure>
-            <figure class="shot" data-slide="3" hidden><img src="images/hullghosts-1.webp" alt="Hull Ghosts: dark ship hold" loading="lazy"><figcaption>Ship hold</figcaption></figure>
+            <figure class="shot contain" data-slide="1" hidden><img src="images/hullghosts-blockout.webp" alt="Top-down view of the level blockout in engine" loading="lazy"><figcaption>Level blockout</figcaption></figure>
+            <figure class="shot" data-slide="2" hidden><img src="images/hullghosts-1.webp" alt="Hull Ghosts: dark ship hold" loading="lazy"><figcaption>Ship hold</figcaption></figure>
+            <figure class="shot contain" data-slide="3" hidden><img src="images/hullghosts-level-layout.webp" alt="Level layout with a legend for locked doors, hidden treasure, the final boss, enemy cultists, a resting place, keys, and traps" loading="lazy"><figcaption>Level layout with legend</figcaption></figure>
           </div>
           <div class="thumbs"></div>
         </div>
@@ -566,8 +611,29 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           </dl>
           <div class="btns">
             <a class="btn primary" href="docs/hull-ghosts-gdd.pdf" target="_blank" rel="noopener">Read the design doc</a>
-            <a class="btn" href="https://youtu.be/tGkmg-dhdT0" target="_blank" rel="noopener">Watch the WIP walkthrough</a>
           </div>
+        </div>
+      </article>
+
+      <!-- PAIN DECK -->
+      <article class="case" data-tags="systems art" id="pain-deck">
+        <div class="media" style="--c:var(--sys)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><video controls playsinline preload="none" poster="images/poster-paindeck.jpg"><source src="media/paindeck-walkthrough.mp4" type="video/mp4"></video><figcaption>Walkthrough · 4:47</figcaption></figure>
+            <figure class="shot" data-slide="1" hidden><img src="images/paindeck-1.webp" alt="Pain villain deck laid out in Tabletop Simulator" loading="lazy"><figcaption>Board layout</figcaption></figure>
+            <figure class="shot" data-slide="2" hidden><img src="images/paindeck-2.webp" alt="Pain deck cards and player guide in Tabletop Simulator" loading="lazy"><figcaption>Cards and guide</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Card Game Design · Solo</span><span class="pips"><i class="pip" data-t="systems" title="Systems"></i><i class="pip" data-t="art" title="3D"></i></span></div>
+          <h3>Pain Deck<em>A custom villain for Villainous</em></h3>
+          <p class="desc">A playable villain for the board game Villainous, built around Pain from Naruto. Apart from the character art taken from the anime, everything is mine: I drew the art, wrote the cards, and designed the deck, its abilities, and its board, then built it so it plays in Tabletop Simulator.</p>
+          <p class="desc" style="color:var(--muted)">Press play for a walkthrough of the deck and how it plays.</p>
+          <dl class="stats">
+            <dt>Tools</dt><dd>Tabletop Simulator · Photoshop · Maya</dd>
+            <dt>Shows</dt><dd>Card and ability design, art, playable prototype</dd>
+          </dl>
         </div>
       </article>
 
@@ -679,27 +745,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="foot"><span>Story &amp; writing</span><span>3 images</span></div>
       </article>
 
-      <article class="gcard" data-tags="systems">
-        <div class="gallery"><div class="stage">
-          <figure class="shot" style="--c:var(--sys)"><video controls playsinline preload="none" poster="images/poster-paindeck.jpg"><source src="media/paindeck-walkthrough.mp4" type="video/mp4"></video><figcaption>Walkthrough · 4:47</figcaption></figure>
-          <figure class="shot" style="--c:var(--sys)" hidden><img src="images/paindeck-1.webp" alt="Pain villain deck laid out in Tabletop Simulator" loading="lazy"><figcaption>Board layout</figcaption></figure>
-          <figure class="shot" style="--c:var(--sys)" hidden><img src="images/paindeck-2.webp" alt="Pain deck cards and guide in Tabletop Simulator" loading="lazy"><figcaption>Cards and guide</figcaption></figure>
-        </div><div class="thumbs"></div></div>
-        <div class="titlebar"><h4>Pain Deck</h4><span class="pips"><i class="pip" data-t="systems"></i></span></div>
-        <div class="type">Card Design · Villainous</div>
-        <p>A custom villain deck for the board game Villainous, built in Tabletop Simulator. The video walks through the deck and how it plays.</p>
-        <div class="foot"><span>Solo</span><span>Tabletop Simulator</span></div>
-      </article>
 
-      <article class="gcard" data-tags="team">
+      <article class="gcard" data-tags="art">
         <div class="gallery"><div class="stage">
-          <figure class="shot" style="--c:var(--muted)"><img src="images/aura-1.webp" alt="Still from the Almighty Aura cutscene" loading="lazy"><figcaption>Cutscene still</figcaption></figure>
+          <figure class="shot" style="--c:var(--muted)"><video controls playsinline preload="none" poster="images/poster-aura.jpg"><source src="media/aura-cutscene.mp4" type="video/mp4"></video><figcaption>Cutscene · 0:55</figcaption></figure>
+          <figure class="shot" style="--c:var(--muted)" hidden><img src="images/aura-1.webp" alt="Still from the Almighty Aura cutscene" loading="lazy"><figcaption>Cutscene still</figcaption></figure>
           <figure class="shot contain" style="--c:var(--muted)" hidden><img src="images/aura-2.webp" alt="Almighty Aura title card" loading="lazy"><figcaption>Title card</figcaption></figure>
         </div><div class="thumbs"></div></div>
-        <div class="titlebar"><h4>Almighty Aura</h4></div>
-        <div class="type">Team Project · Cutscene</div>
-        <p>A group project. The highlight here is a cutscene from the game.</p>
-        <div class="foot"><span>Team</span><a data-link="auraVideo" href="#" target="_blank" rel="noopener" hidden>Watch cutscene →</a></div>
+        <div class="titlebar"><h4>Almighty Aura</h4><span class="pips"><i class="pip" data-t="art"></i></span></div>
+        <div class="type">Team Project · Unreal Cutscene</div>
+        <p>A dark dungeon cutscene made as a team of four. I did animation and character design.</p>
+        <div class="foot"><span>Animation · Characters</span><span>Team of 4</span></div>
       </article>
 
     </div>
@@ -711,7 +767,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="eyebrow">Audio library · made in Logic Pro with ES2 and Alchemy</div>
         <h2>Sound &amp; Music</h2>
       </div>
-      <p>Sound design and music are kept apart so each can be judged on its own. Every clip has a note on what I was going for and how I built it. Sound on.</p>
+      <p>Sound design and music are kept apart so each can be judged on its own. Every clip says what I was responsible for, what the sound had to do for the player, and how I built it. Sound on.</p>
     </div>
     <div class="cert">
       <div class="badge"><img class="b-dark" src="images/wwise-fundamentals-rev.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"><img class="b-light" src="images/wwise-fundamentals-rgb.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"></div>
@@ -722,29 +778,24 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="av-grid">
       <article class="acard big">
         <video controls playsinline preload="none" poster="images/poster-final.jpg"><source src="media/sd-final-project.mp4" type="video/mp4"></video>
-        <div class="meta">Final project · 6:23 · Sound Design for Games</div>
+        <div class="meta">Full sound redesign · 6:23 · Sound Design for Games</div>
         <h4>Orcs Must Die! Deathtrap, re-sounded</h4>
-        <p>I replaced all the audio on six minutes of four-player co-op gameplay: voices, weapons, abilities, traps, orcs, UI cues, ambience, and music. I cut the footage so each player’s point of view gets its moment.</p>
-        <p class="how"><b>How I built it</b>I recorded four voice actors in a cardboard-and-blanket booth I built where they live, and let them improvise around each character’s iconic lines. Foley came from a wallet, a water bottle, rings, a cup and spoon, and scissors, shaped with pitch shifting, flanger, and granular effects. Traps got a heavier, blocky low end, and I field-recorded running water with a Zoom recorder for the map’s water mill.</p>
+        <p><b style="color:var(--fg)">My role: every sound.</b> I stripped the audio from six minutes of four-player co-op gameplay and rebuilt all of it: voices, weapons, abilities, traps, orcs, UI cues, ambience, and music.</p>
+        <p class="how"><b>The challenge</b>Four players fighting at once gets noisy fast. I cut the footage so each player’s point of view gets its moment, and gave the traps a heavier, blocky low end so they stand apart from the weapons.</p>
+        <p class="how"><b>How I built it</b>I recorded four voice actors in a cardboard-and-blanket booth I built where they live, and let them improvise around each character’s iconic lines. Foley came from a wallet, a water bottle, rings, a cup and spoon, and scissors, shaped with pitch shifting, flanger, and granular effects. I field-recorded running water with a Zoom recorder for the map’s water mill.</p>
         <p class="meta">Coursework: gameplay footage from the game, all audio by me and my voice cast</p>
       </article>
       <div class="av-side">
         <article class="acard">
-          <video controls playsinline preload="none" poster="images/poster-runner.jpg"><source src="media/sd-mobile-runner.mp4" type="video/mp4"></video>
-          <div class="meta">Exam · 1:00</div>
-          <h4>Mobile runner game sounds</h4>
-          <p class="how"><b>How I built it</b>Eight synthesized effects in ES2 and Alchemy: merge, level up, level down, rolling, rails, hits, steps, and a win jingle. The level-up pitch climbs as balls keep merging, then resets with the stage. Rising sounds mean good, falling sounds mean bad, so players can hear how they’re doing.</p>
-        </article>
-        <article class="acard">
           <video controls playsinline preload="none" poster="images/poster-trailer.jpg"><source src="media/sd-trailer-synth.mp4" type="video/mp4"></video>
-          <div class="meta">Lab · 0:19</div>
+          <div class="meta">Lab · 0:19 · Subtractive synthesis</div>
           <h4>Trailer effects from scratch</h4>
-          <p>Every effect here was synthesized from scratch with subtractive synthesis: three different water sounds, a sword glint, and the fire near the end.</p>
+          <p class="how"><b>The brief</b>No samples, no recordings. Every effect is synthesized from scratch: three different kinds of water, a sword glint, and the fire near the end, each shaped to match what’s on screen.</p>
         </article>
       </div>
     </div>
 
-    <div class="block-h"><h3><i class="pip" data-t="audio"></i>Sound effects</h3><p>Layered in Logic from Alchemy and synth patches, with reverb, ring shifting, and bitcrushing.</p></div>
+    <div class="block-h"><h3><i class="pip" data-t="audio"></i>Sound effects</h3><p>Each one starts from the moment it has to sell, then gets layered in Logic from Alchemy and synth patches and shaped with reverb, ring shifting, and bitcrushing.</p></div>
     <div class="sfx">
       <article class="acard">
         <div class="meta">Spell · 0:11 · 3 layers</div>
@@ -766,18 +817,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       </article>
     </div>
 
-    <div class="block-h"><h3><i class="pip" data-t="narrative"></i>Music to picture</h3></div>
-    <div class="av-grid">
-      <article class="acard big">
-        <video controls playsinline preload="none" poster="images/poster-score.jpg"><source src="media/score-platformer.mp4" type="video/mp4"></video>
-        <div class="meta">Exam · 1:30 · Music Scoring for Games</div>
-        <h4>Platformer score</h4>
-      </article>
-      <div class="av-side">
-        <p class="how"><b>The idea</b>Combat gets its own faster pace, so the music marks the shift from exploring to fighting and helps build the pace. Each stage’s fights use slightly different tempos, so the score can grow with the world as the game goes on.</p>
-      </div>
-    </div>
-
     <div class="block-h"><h3><i class="pip" data-t="narrative"></i>Music</h3></div>
     <ul class="tracks">
           <li><div class="t"><b>Hero vs. Villain</b><span>A hero theme on cellos, flutes, and harp arpeggios, a villain theme on horns and marching drums, then a battle that fights over both melodies. The combat uses a IV7–iii–ii7–I7 progression for tension.</span><span class="meta">Final project · 1:06</span></div><div class="p"><audio controls preload="none" src="media/music-hero-vs-villain.mp3"></audio></div></li>
@@ -786,14 +825,32 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </ul>
     <figure class="daw" style="margin-top:20px"><img src="images/daw-loop.webp" alt="Logic Pro session for the game loop, showing ten tracks" loading="lazy"><figcaption>Logic Pro session for the game loop</figcaption></figure>
 
-    <div class="block-h"><h3><i class="pip" data-t="audio"></i>Joymaker</h3><p>Music and sound I made over a weekend game jam for the first version of Joymaker, a psychological horror game set in an abandoned toy factory. The game later released on Steam. <a href="https://store.steampowered.com/app/3943260/Joymaker/" target="_blank" rel="noopener">See it on Steam →</a></p></div>
-    <ul class="tracks">
-          <li><div class="t"><b>The Magic Is Within You</b><span class="meta">Music · 1:05</span></div><div class="p"><audio controls preload="none" src="media/music-magic-within-you.mp3"></audio></div></li>
-          <li><div class="t"><b>Child’s Play</b><span class="meta">Music · 0:40</span></div><div class="p"><audio controls preload="none" src="media/music-childs-play.mp3"></audio></div></li>
-          <li><div class="t"><b>Carousel</b><span>Carousel music, distorted so something feels wrong.</span><span class="meta">Music + SFX · 0:30</span></div><div class="p"><audio controls preload="none" src="media/music-carousel.mp3"></audio></div></li>
-          <li><div class="t"><b>Footsteps with dark ambience</b><span class="meta">Ambience · 0:49</span></div><div class="p"><audio controls preload="none" src="media/amb-footsteps-dark.mp3"></audio></div></li>
-          <li><div class="t"><b>Rain and light thunder</b><span class="meta">Ambience · 2:21</span></div><div class="p"><audio controls preload="none" src="media/amb-rain-thunder.mp3"></audio></div></li>
-    </ul>
+    <div class="audio-extra" id="audio-extra">
+    <div class="block-h"><h3><i class="pip" data-t="audio"></i>More sound work</h3><p>Two exam pieces from my game audio courses: a score written to gameplay, and a full sound set for a mobile game.</p></div>
+    <div class="av-grid">
+      <article class="acard big">
+        <video controls playsinline preload="none" poster="images/poster-score.jpg"><source src="media/score-platformer.mp4" type="video/mp4"></video>
+        <div class="meta">Music to picture · 1:30 · Music Scoring for Games</div>
+        <h4>Platformer score</h4>
+      </article>
+      <div class="av-side">
+        <p class="how"><b>Design goal</b>Tell the player when the game changes gear. Exploring and fighting get different paces, so the music marks the shift into combat and builds momentum through it.</p>
+        <p class="how"><b>How it scales</b>Each stage’s fights use a slightly different tempo, so the score can grow with the world as the game goes on.</p>
+      </div>
+    </div>
+    <div class="av-grid" style="margin-top:20px">
+      <article class="acard big">
+        <video controls playsinline preload="none" poster="images/poster-runner.jpg"><source src="media/sd-mobile-runner.mp4" type="video/mp4"></video>
+        <div class="meta">Game sound set · 1:00 · ES2 and Alchemy</div>
+        <h4>Mobile runner game sounds</h4>
+      </article>
+      <div class="av-side">
+        <p class="how"><b>My role</b>The full sound set: eight synthesized effects for merge, level up, level down, rolling, rails, hits, steps, and a win jingle.</p>
+        <p class="how"><b>Design goal</b>Let players hear how they’re doing without looking. Rising sounds mean good and falling sounds mean bad, and the level-up pitch climbs as balls keep merging, then resets with each stage.</p>
+      </div>
+    </div>
+    </div>
+
     </div>
   </div>
 </section>
@@ -970,8 +1027,11 @@ function applyFilter(tag, scroll){
   chips.forEach(c=>c.setAttribute("aria-pressed", c.dataset.filter===tag ? "true":"false"));
   document.getElementById("count").textContent = tag==="all" ? items.length + " projects" : shown + " of " + items.length;
   document.getElementById("empty").hidden = shown>0;
-  const featuredVisible = [...document.querySelectorAll(".case")].some(e=>!e.hidden);
-  document.querySelector(".featured").hidden = !featuredVisible;
+  document.querySelectorAll("[data-reel]").forEach(r=>{ const on = r.dataset.reel===tag; if (!on) r.querySelector("video")?.pause(); r.hidden = !on; });
+  const featured = document.getElementById("featured-main");
+  const lead = document.getElementById("audio-lead");
+  const lyram = document.getElementById("lyram");
+  const extra = document.getElementById("audio-extra");
   const moreVisible = [...document.querySelectorAll(".gcard")].some(e=>!e.hidden);
   document.querySelector(".more-head").hidden = !moreVisible;
   document.querySelector(".deck").hidden = !moreVisible;
@@ -979,9 +1039,17 @@ function applyFilter(tag, scroll){
   const lib = document.getElementById("audio-library");
   const libOn = tag==="all" || tag==="audio";
   lib.hidden = !libOn;
-  const featured = document.querySelector(".featured");
-  if (tag==="audio"){ featured.parentNode.insertBefore(lib, featured); lib.classList.add("first"); }
-  else { document.getElementById("empty").after(lib); lib.classList.remove("first"); }
+  /* Audio view: reel, Lyram, the library, the other audio projects, then "More sound work" last */
+  if (tag==="audio"){
+    lead.appendChild(lyram); lead.hidden = false;
+    featured.parentNode.insertBefore(lib, featured); lib.classList.add("first");
+    featured.after(extra);
+  } else {
+    featured.prepend(lyram); lead.hidden = true;
+    document.getElementById("empty").after(lib); lib.classList.remove("first");
+    lib.appendChild(extra);
+  }
+  featured.hidden = ![...featured.querySelectorAll(".case")].some(e=>!e.hidden);
   if (tag==="audio") document.getElementById("count").textContent = shown + " projects + audio library";
   if (libOn) document.getElementById("empty").hidden = true;
   if (scroll) document.getElementById("work").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto":"smooth"});
@@ -989,13 +1057,13 @@ function applyFilter(tag, scroll){
 chips.forEach(c=>c.addEventListener("click", ()=>applyFilter(c.dataset.filter,false)));
 document.querySelectorAll(".dcard").forEach(c=>c.addEventListener("click", ()=>applyFilter(c.dataset.filter,true)));
 document.querySelectorAll("[data-count]").forEach(el=>{
-  el.textContent = items.filter(i=>i.dataset.tags.split(" ").includes(el.dataset.count)).length + " projects";
+  el.textContent = "Reel + " + items.filter(i=>i.dataset.tags.split(" ").includes(el.dataset.count)).length + " projects";
 });
 /* nav "Audio" link: show the library even if another filter is on */
 document.querySelectorAll('a[href="#audio-library"]').forEach(a=>a.addEventListener("click", ()=>{ if (document.getElementById("audio-library").hidden) applyFilter("all",false); }));
 window.addEventListener("hashchange", ()=>{ const t=(location.hash||"").slice(1).toLowerCase(); if (TAGS.includes(t)) applyFilter(t,true); });
 const h = (location.hash||"").slice(1).toLowerCase();
-applyFilter(TAGS.includes(h) ? h : "all", TAGS.includes(h));
+applyFilter(TAGS.includes(h) ? h : "all", false);
 
 /* Copy buttons */
 document.querySelectorAll("[data-copy]").forEach(b=>{

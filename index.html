@@ -313,7 +313,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .listen-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-bottom:8px}
 .audio-lib{margin-top:72px;padding-top:48px;border-top:1px solid var(--line)}
 .audio-lead{margin-bottom:64px}
-.audio-extra{margin-top:8px}
+.audio-intro.lead-in{margin:8px 0 48px}
+.audio-lib.first>.block-h:first-child{margin-top:0}
+.music-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.music-split .daw{max-width:none}
+.music-split .tracks li{grid-template-columns:minmax(0,1fr);gap:6px;padding:12px 0}
+@media (max-width:860px){.music-split{grid-template-columns:minmax(0,1fr)}}
 .audio-lib.first{margin-top:8px;padding-top:0;border-top:0;margin-bottom:64px}
 .audio-lib .acard{background:var(--card)}
 .writing{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
@@ -724,14 +729,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
     </div>
 
-    <div class="more-head">
+    <div class="more-head" id="more-head">
       <h3>More work</h3>
       <div class="legend" aria-hidden="true">
         <span><i class="pip" data-t="systems"></i>Systems</span><span><i class="pip" data-t="level"></i>Level</span><span><i class="pip" data-t="narrative"></i>Narrative</span><span><i class="pip" data-t="audio"></i>Audio</span><span><i class="pip" data-t="art"></i>3D</span>
       </div>
     </div>
 
-    <div class="deck">
+    <div class="deck" id="more-deck">
 
       <article class="gcard" data-tags="narrative">
         <div class="gallery"><div class="stage">
@@ -762,6 +767,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <p class="empty" id="empty" hidden>No projects with that tag yet.</p>
 
     <div class="audio-lib" id="audio-library" data-lib="audio">
+    <div class="audio-intro" id="audio-intro">
     <div class="sec-head lib-head">
       <div>
         <div class="eyebrow">Audio library · made in Logic Pro with ES2 and Alchemy</div>
@@ -772,6 +778,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <div class="cert">
       <div class="badge"><img class="b-dark" src="images/wwise-fundamentals-rev.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"><img class="b-light" src="images/wwise-fundamentals-rgb.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"></div>
       <div><b>Wwise Fundamentals Certified</b><span>Audiokinetic · Wwise 2024.1 · September 2026</span><span class="id">Certificate ID b005a0b7-ef21-dc37-d82f-c47d3c56ede4</span></div>
+    </div>
     </div>
 
     <div class="block-h"><h3><i class="pip" data-t="audio"></i>Sound design to picture</h3></div>
@@ -818,36 +825,40 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
 
     <div class="block-h"><h3><i class="pip" data-t="narrative"></i>Music</h3></div>
+    <div class="music-split">
+    <figure class="daw"><img src="images/daw-loop.webp" alt="Logic Pro session for the game loop, showing ten tracks" loading="lazy"><figcaption>Logic Pro session for the game loop</figcaption></figure>
     <ul class="tracks">
           <li><div class="t"><b>Hero vs. Villain</b><span>A hero theme on cellos, flutes, and harp arpeggios, a villain theme on horns and marching drums, then a battle that fights over both melodies. The combat uses a IV7–iii–ii7–I7 progression for tension.</span><span class="meta">Final project · 1:06</span></div><div class="p"><audio controls preload="none" src="media/music-hero-vs-villain.mp3"></audio></div></li>
           <li><div class="t"><b>Game loop</b><span>A seamless loop for gameplay, built from ten tracks.</span><span class="meta">Lab · 1:37</span></div><div class="p"><audio controls preload="none" src="media/music-game-loop.mp3"></audio></div></li>
           <li><div class="t"><b>Melody study</b><span class="meta">Lab · 0:19</span></div><div class="p"><audio controls preload="none" src="media/music-melody.mp3"></audio></div></li>
     </ul>
-    <figure class="daw" style="margin-top:20px"><img src="images/daw-loop.webp" alt="Logic Pro session for the game loop, showing ten tracks" loading="lazy"><figcaption>Logic Pro session for the game loop</figcaption></figure>
+    </div>
 
     <div class="audio-extra" id="audio-extra">
-    <div class="block-h"><h3><i class="pip" data-t="audio"></i>More sound work</h3><p>Two exam pieces from my game audio courses: a score written to gameplay, and a full sound set for a mobile game.</p></div>
-    <div class="av-grid">
-      <article class="acard big">
-        <video controls playsinline preload="none" poster="images/poster-score.jpg"><source src="media/score-platformer.mp4" type="video/mp4"></video>
-        <div class="meta">Music to picture · 1:30 · Music Scoring for Games</div>
-        <h4>Platformer score</h4>
-      </article>
-      <div class="av-side">
-        <p class="how"><b>Design goal</b>Tell the player when the game changes gear. Exploring and fighting get different paces, so the music marks the shift into combat and builds momentum through it.</p>
-        <p class="how"><b>How it scales</b>Each stage’s fights use a slightly different tempo, so the score can grow with the world as the game goes on.</p>
-      </div>
+    <div class="more-head">
+      <h3>More sound work</h3>
+      <div class="legend" aria-hidden="true"><span><i class="pip" data-t="audio"></i>Audio</span><span><i class="pip" data-t="narrative"></i>Music</span></div>
     </div>
-    <div class="av-grid" style="margin-top:20px">
-      <article class="acard big">
-        <video controls playsinline preload="none" poster="images/poster-runner.jpg"><source src="media/sd-mobile-runner.mp4" type="video/mp4"></video>
-        <div class="meta">Game sound set · 1:00 · ES2 and Alchemy</div>
-        <h4>Mobile runner game sounds</h4>
+    <div class="deck">
+      <article class="gcard">
+        <div class="gallery"><div class="stage">
+          <figure class="shot" style="--c:var(--nar)"><video controls playsinline preload="none" poster="images/poster-score.jpg"><source src="media/score-platformer.mp4" type="video/mp4"></video><figcaption>Score to gameplay · 1:30</figcaption></figure>
+        </div></div>
+        <div class="titlebar"><h4>Platformer score</h4><span class="pips"><i class="pip" data-t="narrative"></i></span></div>
+        <div class="type">Music to picture · Exam</div>
+        <p>Exploring and fighting get different paces, so the music marks the shift into combat and builds momentum through it. Each stage’s fights use a slightly different tempo, so the score grows with the world.</p>
+        <div class="foot"><span>Music Scoring for Games</span><span>1:30</span></div>
       </article>
-      <div class="av-side">
-        <p class="how"><b>My role</b>The full sound set: eight synthesized effects for merge, level up, level down, rolling, rails, hits, steps, and a win jingle.</p>
-        <p class="how"><b>Design goal</b>Let players hear how they’re doing without looking. Rising sounds mean good and falling sounds mean bad, and the level-up pitch climbs as balls keep merging, then resets with each stage.</p>
-      </div>
+      <article class="gcard">
+        <div class="gallery"><div class="stage">
+          <figure class="shot" style="--c:var(--aud)"><video controls playsinline preload="none" poster="images/poster-runner.jpg"><source src="media/sd-mobile-runner.mp4" type="video/mp4"></video><figcaption>Gameplay with my sounds · 1:00</figcaption></figure>
+        </div></div>
+        <div class="titlebar"><h4>Mobile runner sounds</h4><span class="pips"><i class="pip" data-t="audio"></i></span></div>
+        <div class="type">Game sound set · Exam</div>
+        <p>Eight synthesized effects: merge, level up and down, rolling, rails, hits, steps, and a win jingle. Rising sounds mean good and falling sounds mean bad, and the level-up pitch climbs as balls keep merging, so players hear how they’re doing without looking.</p>
+        <div class="foot"><span>ES2 · Alchemy</span><span>1:00</span></div>
+      </article>
+    </div>
     </div>
     </div>
 
@@ -1032,19 +1043,22 @@ function applyFilter(tag, scroll){
   const lead = document.getElementById("audio-lead");
   const lyram = document.getElementById("lyram");
   const extra = document.getElementById("audio-extra");
-  const moreVisible = [...document.querySelectorAll(".gcard")].some(e=>!e.hidden);
-  document.querySelector(".more-head").hidden = !moreVisible;
-  document.querySelector(".deck").hidden = !moreVisible;
+  const moreVisible = [...document.querySelectorAll("#more-deck .gcard")].some(e=>!e.hidden);
+  document.getElementById("more-head").hidden = !moreVisible;
+  document.getElementById("more-deck").hidden = !moreVisible;
+  const intro = document.getElementById("audio-intro");
   /* the audio library belongs to "All" and "Audio"; for Audio it leads */
   const lib = document.getElementById("audio-library");
   const libOn = tag==="all" || tag==="audio";
   lib.hidden = !libOn;
-  /* Audio view: reel, Lyram, the library, the other audio projects, then "More sound work" last */
+  /* Audio view: reel, Sound & Music intro, Lyram, the library, the other audio projects, then "More sound work" last */
   if (tag==="audio"){
+    lead.before(intro); intro.classList.add("lead-in");
     lead.appendChild(lyram); lead.hidden = false;
     featured.parentNode.insertBefore(lib, featured); lib.classList.add("first");
     featured.after(extra);
   } else {
+    lib.prepend(intro); intro.classList.remove("lead-in");
     featured.prepend(lyram); lead.hidden = true;
     document.getElementById("empty").after(lib); lib.classList.remove("first");
     lib.appendChild(extra);

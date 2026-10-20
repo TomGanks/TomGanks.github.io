@@ -255,6 +255,15 @@ footer{padding-block:28px;border-top:1px solid var(--line);color:var(--muted);fo
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 
+
+/* reels */
+.reels-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}
+.reel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:10px;align-content:start;min-width:0}
+.reel video{width:100%;max-width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;display:block}
+.reel h3{font-size:1.7rem;text-transform:uppercase;display:flex;align-items:center;gap:10px;padding:0 4px}
+.reel p{color:var(--muted);font-size:.9rem;padding:0 4px}
+.reel .meta{padding:0 4px}
+
 /* audio section */
 .block-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin:48px 0 16px}
 
@@ -307,6 +316,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <a class="brand" href="#top">J. Silva</a>
     <nav aria-label="Sections">
+      <a href="#reels" class="opt">Reels</a>
       <a href="#work">Work</a>
       <a href="#audio-library" class="opt">Audio</a>
       <a href="#writing" class="opt">Writing</a>
@@ -328,8 +338,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <p class="lead">Every game I work on starts with that question. I’m a systems designer first: I prototype, test, and iterate until a game feels right in the player’s hands. Story, music, and sound are how I build the world around those systems.</p>
       <div class="btns">
         <a class="btn primary" href="#work">See the work</a>
-        <a class="btn" data-link="reel" href="#" target="_blank" rel="noopener" hidden>
-          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>Watch demo reel</a>
+        <a class="btn" href="#reels">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>Watch the reels</a>
         <a class="btn" id="resume" href="resume.pdf" target="_blank" rel="noopener" hidden>Résumé (PDF)</a>
         <a class="btn" href="#contact">Get in touch</a>
       </div>
@@ -359,6 +369,39 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <p>Sound design and original music, written to support play and story. Wwise certified.</p>
         <div class="foot"><span>Lyram · IPSC · Library</span><span>20+ clips</span></div>
       </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REELS ============ -->
+<section id="reels">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Watch first</div>
+        <h2>Reels</h2>
+      </div>
+      <p>One short reel per discipline. Each clip names the project and what I did on it.</p>
+    </div>
+    <div class="reels-grid">
+      <article class="reel">
+        <video controls playsinline preload="none" poster="images/poster-reel-systems.jpg"><source src="media/reel-systems.mp4" type="video/mp4"></video>
+        <h3><i class="pip" data-t="systems"></i>Systems</h3>
+        <div class="meta">1:10 · Music: my IPSC rock track “Pincer”</div>
+        <p>Opens on Pain Deck in Tabletop Simulator, then Lyram’s level flow and traversal, Luxenomicon, IPSC Shooter, Mermory, and Organa Tales.</p>
+      </article>
+      <article class="reel">
+        <video controls playsinline preload="none" poster="images/poster-reel-narrative.jpg"><source src="media/reel-narrative.mp4" type="video/mp4"></video>
+        <h3><i class="pip" data-t="narrative"></i>Narrative</h3>
+        <div class="meta">1:12 · Music: my “Hero vs. Villain” score</div>
+        <p>Lyram’s story and characters, the world of Organa, Hull Ghosts, Tide Wars, and InnovATL.</p>
+      </article>
+      <article class="reel">
+        <video controls playsinline preload="none" poster="images/poster-reel-audio.jpg"><source src="media/reel-audio.mp4" type="video/mp4"></video>
+        <h3><i class="pip" data-t="audio"></i>Sound &amp; Music</h3>
+        <div class="meta">2:00 · Sound design first, then music</div>
+        <p>A 32-second Orcs Must Die! Deathtrap sound redesign, synthesized trailer effects, layered SFX, and mobile game sounds, then music for Lyram, InnovATL, and a platformer.</p>
+      </article>
     </div>
   </div>
 </section>

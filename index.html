@@ -102,7 +102,7 @@ p{margin:0}
   color-mix(in srgb,var(--c) 18%,var(--card));display:grid;place-items:center}
 .dcard .band svg{width:44px;height:44px;color:var(--c)}
 .dcard{overflow:hidden}
-.dcard h3{font-size:1.65rem;text-transform:uppercase;color:var(--c);overflow-wrap:anywhere}
+.dcard h3{font-size:1.65rem;text-transform:uppercase;color:var(--c);white-space:nowrap}
 .dcard p{font-size:.875rem;color:var(--muted);line-height:1.45}
 .dcard .foot{margin-top:auto;font-family:var(--f-mono);font-size:.75rem;color:var(--muted);display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px}
 .dcard:nth-child(1){--c:var(--sys);transform:translateX(-120px) rotate(-11deg)}
@@ -117,7 +117,8 @@ p{margin:0}
   .dcard{width:160px;height:236px;padding:11px;gap:8px}
   .dcard .band{height:64px}
   .dcard h3{font-size:1.3rem}
-  .dcard p{font-size:.78rem}
+  .dcard p{font-size:.78rem;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;overflow:hidden}
+  .dcard .foot{display:none}
   .dcard:nth-child(1){transform:translateX(-92px) rotate(-10deg)}
   .dcard:nth-child(3){transform:translateX(92px) rotate(10deg)}
   .dcard:nth-child(1):hover,.dcard:nth-child(1):focus-visible{transform:translateX(-96px) translateY(-18px) rotate(-7deg)}
@@ -125,6 +126,7 @@ p{margin:0}
 }
 @media (max-width:400px){
   .dcard{width:140px;height:214px}
+  .dcard p{-webkit-line-clamp:5}
   .dcard:nth-child(1){transform:translateX(-78px) rotate(-10deg)}
   .dcard:nth-child(3){transform:translateX(78px) rotate(10deg)}
 }
@@ -343,7 +345,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="band"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="6"/><path d="M24 6v8M24 34v8M6 24h8M34 24h8M11 11l6 6M31 31l6 6M37 11l-6 6M17 31l-6 6"/></svg></div>
         <h3>Systems</h3>
         <p>Loops, rules, and card economies, from a roguelite to a full tabletop RPG.</p>
-        <div class="foot"><span>Luxenomicon · Organa</span><span data-count="systems">3</span></div>
+        <div class="foot"><span>Luxenomicon · Mermory</span><span data-count="systems">3</span></div>
       </button>
       <button class="dcard" type="button" data-filter="narrative">
         <div class="band"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M10 8h20l8 8v24H10z"/><path d="M30 8v8h8M16 22h16M16 28h16M16 34h10"/></svg></div>
@@ -387,20 +389,27 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="media" style="--c:var(--nar)">
           <div class="stage">
             <figure class="shot" data-slide="0"><video controls playsinline preload="none" poster="images/poster-lyram.jpg"><source src="media/lyram-gameplay.mp4" type="video/mp4"></video><figcaption>Gameplay with my music · 5:54</figcaption></figure>
-            <figure class="shot" data-slide="1" hidden><img src="images/lyram-1.webp" alt="Lyram storybook page: Music and Environment" loading="lazy"><figcaption>Storybook · Music and Environment</figcaption></figure>
-            <figure class="shot contain" data-slide="2" hidden><img src="images/lyram-2.webp" alt="Lyram storybook character page: Fernan" loading="lazy"><figcaption>Character page · Fernan</figcaption></figure>
-            <figure class="shot contain" data-slide="3" hidden><img src="images/lyram-3.webp" alt="Lyram storybook character page: Darlyn" loading="lazy"><figcaption>Character page · Darlyn</figcaption></figure>
+            <figure class="shot" data-slide="1" hidden><img src="images/lyram-title.webp" alt="Lyram title art" loading="lazy"><figcaption>Title art</figcaption></figure>
+            <figure class="shot contain" data-slide="2" hidden><img src="images/lyram-concept.webp" alt="Pitch spread: concept statement and puzzle design" loading="lazy"><figcaption>Concept and puzzles</figcaption></figure>
+            <figure class="shot contain" data-slide="3" hidden><img src="images/lyram-instruments.webp" alt="Pitch spread: game type and the magical instruments" loading="lazy"><figcaption>The magical instruments</figcaption></figure>
+            <figure class="shot contain" data-slide="4" hidden><img src="images/lyram-levelflow.webp" alt="Level flow diagram: escape the city, find the first instrument, puzzles, boss, new instrument, sneak mission" loading="lazy"><figcaption>Level flow</figcaption></figure>
+            <figure class="shot contain" data-slide="5" hidden><img src="images/lyram-map.webp" alt="Map of Organa Land with Selemene Mine, Fallen of Grande City, City of Pollo, and Village of Mene" loading="lazy"><figcaption>Map of Organa Land</figcaption></figure>
+            <figure class="shot contain" data-slide="6" hidden><img src="images/lyram-music-env.webp" alt="Pitch spread: music and environment" loading="lazy"><figcaption>Music and environment</figcaption></figure>
+            <figure class="shot contain" data-slide="7" hidden><img src="images/lyram-darlyn.webp" alt="Pitch spread: Darlyn, the main character" loading="lazy"><figcaption>Darlyn</figcaption></figure>
+            <figure class="shot contain" data-slide="8" hidden><img src="images/lyram-darlyn-sheet.webp" alt="Darlyn character turnaround sheet" loading="lazy"><figcaption>Darlyn turnaround</figcaption></figure>
+            <figure class="shot contain" data-slide="9" hidden><img src="images/lyram-fernan.webp" alt="Pitch spread: Fernan, Darlyn’s father" loading="lazy"><figcaption>Fernan</figcaption></figure>
           </div>
           <div class="thumbs"></div>
         </div>
         <div class="body">
-          <div class="typeline"><span class="eyebrow">2D Platformer · Music &amp; Story</span><span class="pips"><i class="pip" data-t="level" title="Level"></i><i class="pip" data-t="narrative" title="Narrative"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
+          <div class="typeline"><span class="eyebrow">2D Puzzle Platformer · Team of 4</span><span class="pips"><i class="pip" data-t="level" title="Level"></i><i class="pip" data-t="narrative" title="Narrative"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
           <h3>Lyram</h3>
-          <p class="desc">A 2D platformer where music and story drive the play. I led four disciplines on the project: story, sound and music, character design, and level design. Press play for six minutes of gameplay with my music, then flip through the in-game storybook pages that introduce the world and its characters.</p>
+          <p class="desc">Darlyn, a young musician, sets out to recover her late father’s magical instruments from the Soul Tribe. Each instrument is a tool: the horn breaks terrain, the clarinet fires notes at levers, and the soundtrack gains each instrument as you find it. I led story, sound and music, character design, and level design.</p>
+          <p class="desc" style="color:var(--muted)">Press play for six minutes of gameplay with my music, then flip through our studio pitch: the level flow, the map of Organa Land (the same world as my tabletop RPG), and the characters.</p>
           <!-- ADD (recruiters look for this): 1) the design goal, 2) one problem you hit and how you solved it, 3) what you'd change. 2–4 sentences total. -->
           <dl class="stats">
             <dt>Role</dt><dd>Lead: story, sound &amp; music, characters, levels</dd>
-            <dt>Shows</dt><dd>Level design, narrative, original score</dd>
+            <dt>Shows</dt><dd>Level flow, worldbuilding, characters, original score</dd>
           </dl>
           <div class="btns">
             <a class="btn primary" data-link="lyramVideo" href="#" target="_blank" rel="noopener" hidden>Watch gameplay</a>
@@ -453,13 +462,69 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           </dl>
           <ul class="tracks">
           <li><div class="t"><b>Target hits and misses</b><span>Each target material gets its own sound: steel plates, small steel, blocky targets, and duller variants, then the miss shots.</span><span class="meta">SFX montage · 0:18</span></div><div class="p"><audio controls preload="none" src="media/ipsc-targets-montage.mp3"></audio></div></li>
-          <li><div class="t"><b>Music 1</b><span class="meta">Rock soundtrack · 1:52</span></div><div class="p"><audio controls preload="none" src="media/ipsc-music-1.mp3"></audio></div></li>
+          <li><div class="t"><b>Pincer</b><span class="meta">Rock soundtrack · 2:27</span></div><div class="p"><audio controls preload="none" src="media/ipsc-pincer.mp3"></audio></div></li>
 </ul>
           <details class="more-tracks"><summary>3 more rock tracks</summary><ul class="tracks">
           <li><div class="t"><b>Venom</b><span class="meta">Rock soundtrack · 1:49</span></div><div class="p"><audio controls preload="none" src="media/ipsc-venom.mp3"></audio></div></li>
           <li><div class="t"><b>Stinger</b><span class="meta">Rock soundtrack · 1:42</span></div><div class="p"><audio controls preload="none" src="media/ipsc-stinger.mp3"></audio></div></li>
-          <li><div class="t"><b>Pincer</b><span class="meta">Rock soundtrack · 2:27</span></div><div class="p"><audio controls preload="none" src="media/ipsc-pincer.mp3"></audio></div></li>
-                    </ul></details>
+          <li><div class="t"><b>Earth</b><span class="meta">Rock soundtrack · 1:52</span></div><div class="p"><audio controls preload="none" src="media/ipsc-earth.mp3"></audio></div></li>
+          </ul></details>
+        </div>
+      </article>
+
+      <!-- MERMORY -->
+      <article class="case" data-tags="systems audio" id="mermory">
+        <div class="media" style="--c:var(--sys)">
+          <div class="stage">
+            <figure class="shot contain" data-slide="0"><img src="images/mermory-storage.webp" alt="Hex catch-storage diagram: storage grows with level, gear and catches take up hex cells" loading="lazy"><figcaption>Catch storage grid</figcaption></figure>
+            <figure class="shot contain" data-slide="1" hidden><img src="images/mermory-deck-leaderboards.webp" alt="Slide on balancing leaderboards so they support learning" loading="lazy"><figcaption>Balancing leaderboards</figcaption></figure>
+            <figure class="shot contain" data-slide="2" hidden><img src="images/mermory-deck-daily.webp" alt="Slide on a story that changes what you do each day" loading="lazy"><figcaption>A different day, every day</figcaption></figure>
+            <figure class="shot contain" data-slide="3" hidden><img src="images/mermory-deck-goal.webp" alt="Slide stating the goal: keep the game engaging and replayable across semesters" loading="lazy"><figcaption>The goal</figcaption></figure>
+            <figure class="shot contain" data-slide="4" hidden><img src="images/mermory-reel-sketch.webp" alt="Quick sketch of the reel-in fishing mechanic" loading="lazy"><figcaption>Reel-in mechanic sketch</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Internship · Designer &amp; Producer</span><span class="pips"><i class="pip" data-t="systems" title="Systems"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
+          <h3>Mermory</h3>
+          <p class="desc">A study game where reviewing flashcards earns the time and gear to run a cozy aquarium and go on roguelite fishing expeditions. As designer and producer, I scoped the fishing MVP with a must/should/could/won’t cut list, designed the reel-in mechanic, and pitched how leaderboards, co-op, and a daily story could keep students coming back without pulling them away from learning.</p>
+          <p class="how"><b>The reel-in mechanic</b>Once a fish bites, you pull to add tension and steer left or right against it. Early fish only need pulling; later expeditions make you juggle all three while the fish darts around.</p>
+          <dl class="stats">
+            <dt>Role</dt><dd>Game designer &amp; producer (internship)</dd>
+            <dt>Status</dt><dd>Pre-production; the team never reached development</dd>
+          </dl>
+          <ul class="tracks">
+          <li><div class="t"><b>Right-answer sounds</b><span>Eight variations, from a simple notification chime to bigger rewards.</span><span class="meta">Website SFX · 0:13</span></div><div class="p"><audio controls preload="none" src="media/mermory-right.mp3"></audio></div></li>
+          <li><div class="t"><b>Wrong-answer sounds</b><span>Seven variations, stepping lower as mistakes repeat.</span><span class="meta">Website SFX · 0:10</span></div><div class="p"><audio controls preload="none" src="media/mermory-wrong.mp3"></audio></div></li>
+          <li><div class="t"><b>Zen breathing track</b><span>Paced to a breathe in, hold, breathe out, hold cycle, which I tested myself.</span><span class="meta">Music · 7:16</span></div><div class="p"><audio controls preload="none" src="media/mermory-zen.mp3"></audio></div></li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- HULL GHOSTS -->
+      <article class="case" data-tags="narrative level" id="hull-ghosts">
+        <div class="media" style="--c:var(--nar)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><img src="images/hullghosts-2.webp" alt="Hull Ghosts: ship cabin with a skeleton and blood" loading="lazy"><figcaption>Ship cabin</figcaption></figure>
+            <figure class="shot contain" data-slide="1" hidden><img src="images/hullghosts-level-layout.webp" alt="Level layout with a legend for locked doors, hidden treasure, the final boss, enemy cultists, a resting place, keys, and traps" loading="lazy"><figcaption>Level layout with legend</figcaption></figure>
+            <figure class="shot contain" data-slide="2" hidden><img src="images/hullghosts-blockout.webp" alt="Top-down view of the level blockout in engine" loading="lazy"><figcaption>Level blockout</figcaption></figure>
+            <figure class="shot" data-slide="3" hidden><img src="images/hullghosts-1.webp" alt="Hull Ghosts: dark ship hold" loading="lazy"><figcaption>Ship hold</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Action RPG Concept · Solo</span><span class="pips"><i class="pip" data-t="narrative" title="Narrative"></i><i class="pip" data-t="level" title="Level"></i></span></div>
+          <h3>Hull Ghosts<em>The War Comes from Below</em></h3>
+          <p class="desc">A dark pirate action RPG. Vanessa Wyve grew up poor, learned to out-fish and out-smart the market bosses who cheated her, and became a Robin Hood of the seas. Her home, Gambler’s Groove, has traded a beloved monarchy for a government that hires criminals, while its children are quietly born with strange gifts.</p>
+          <p class="desc" style="color:var(--muted)">I wrote the design document (high concept, a two-part history of the land, and full profiles of the hero and the antagonist) and blocked out a level with locked doors, traps, cultists, a resting place, and a final boss.</p>
+          <dl class="stats">
+            <dt>Rating</dt><dd>Mature 17+ · PC and consoles</dd>
+            <dt>Shows</dt><dd>Story, worldbuilding, characters, level layout</dd>
+          </dl>
+          <div class="btns">
+            <a class="btn primary" href="docs/hull-ghosts-gdd.pdf" target="_blank" rel="noopener">Read the design doc</a>
+            <a class="btn" href="https://youtu.be/tGkmg-dhdT0" target="_blank" rel="noopener">Watch the WIP walkthrough</a>
+          </div>
         </div>
       </article>
 
@@ -490,6 +555,29 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
       </article>
 
+      <!-- 3D & ENVIRONMENTS -->
+      <article class="case" data-tags="art level" id="modeling">
+        <div class="media" style="--c:var(--art)">
+          <div class="stage">
+            <figure class="shot" data-slide="0"><img src="images/model-render.webp" alt="Treasure chest, lyre, and pirate gun rendered in Unreal Engine" loading="lazy"><figcaption>Props · final render</figcaption></figure>
+            <figure class="shot" data-slide="1" hidden><img src="images/ue5-landscape.webp" alt="Desert landscape with cacti built in Unreal Engine 5" loading="lazy"><figcaption>UE5 desert landscape</figcaption></figure>
+            <figure class="shot contain" data-slide="2" hidden><img src="images/model-wireframe.webp" alt="Wireframes of the lyre, pirate gun, and chest" loading="lazy"><figcaption>Props · wireframes</figcaption></figure>
+            <figure class="shot contain" data-slide="3" hidden><img src="images/uv-lyre.webp" alt="UV layout for the lyre body" loading="lazy"><figcaption>Lyre UVs</figcaption></figure>
+            <figure class="shot contain" data-slide="4" hidden><img src="images/uv-gun.webp" alt="UV layout for the pirate gun body" loading="lazy"><figcaption>Pirate gun UVs</figcaption></figure>
+          </div>
+          <div class="thumbs"></div>
+        </div>
+        <div class="body">
+          <div class="typeline"><span class="eyebrow">Maya · Unreal Engine 5</span><span class="pips"><i class="pip" data-t="art" title="3D"></i><i class="pip" data-t="level" title="Level"></i></span></div>
+          <h3>3D &amp; Environments</h3>
+          <p class="desc">Three props modeled and UV-unwrapped in Maya, then lit and rendered in Unreal Engine: a lyre, a pirate gun, and a treasure chest. Alongside them, a desert environment built in Unreal Engine 5 with landscape tools and scattered foliage, framed low to sell the scale of the dunes.</p>
+          <dl class="stats">
+            <dt>Tools</dt><dd>Maya · Unreal Engine 5</dd>
+            <dt>Shows</dt><dd>Prop modeling, UV layout, environment building</dd>
+          </dl>
+        </div>
+      </article>
+
       <!-- INNOVATL -->
       <article class="case" data-tags="narrative audio" id="innovatl">
         <div class="media" style="--c:var(--aud)">
@@ -500,12 +588,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="body">
           <div class="typeline"><span class="eyebrow">Showcase Project · Atlanta</span><span class="pips"><i class="pip" data-t="narrative" title="Narrative"></i><i class="pip" data-t="audio" title="Audio"></i></span></div>
           <h3>InnovATL</h3>
-          <p class="desc">A project built to show off Atlanta, voiced by Ludacris. I led sound, music, and story design. Press play for the 15-second projection piece; sound on.</p>
+          <p class="desc">A project built to show off Atlanta, voiced by Ludacris. I led sound, music, and story design. Press play for the 15-second projection piece, then listen to the music I wrote for it below.</p>
           <!-- ADD: what the player does, who it was made for, and what working with a celebrity VO line meant for your audio/story pipeline. -->
           <dl class="stats">
             <dt>Role</dt><dd>Lead: sound, music &amp; story design</dd>
             <dt>Voice</dt><dd>Ludacris</dd>
           </dl>
+          <ul class="tracks">
+          <li><div class="t"><b>School of Knox</b><span>An Atlanta trap beat written for the project.</span><span class="meta">Music · 1:22</span></div><div class="p"><audio controls preload="none" src="media/innovatl-school-of-knox.mp3"></audio></div></li>
+          <li><div class="t"><b>South Beat</b><span class="meta">Music · 0:27</span></div><div class="p"><audio controls preload="none" src="media/innovatl-south-beat.mp3"></audio></div></li>
+          <li><div class="t"><b>Gang Beat</b><span class="meta">Music · 0:28</span></div><div class="p"><audio controls preload="none" src="media/innovatl-gang-beat.mp3"></audio></div></li>
+          </ul>
+          <details class="more-tracks"><summary>6 more loops</summary><ul class="tracks">
+          <li><div class="t"><b>Harmony 1</b><span class="meta">Loop · 0:28</span></div><div class="p"><audio controls preload="none" src="media/innovatl-loop-harmony-1.mp3"></audio></div></li>
+          <li><div class="t"><b>Hypno Wave</b><span class="meta">Loop · 0:20</span></div><div class="p"><audio controls preload="none" src="media/innovatl-loop-hypno-wave.mp3"></audio></div></li>
+          <li><div class="t"><b>The Popper</b><span class="meta">Loop · 0:19</span></div><div class="p"><audio controls preload="none" src="media/innovatl-loop-the-popper.mp3"></audio></div></li>
+          <li><div class="t"><b>Simply Stringy</b><span class="meta">Loop · 0:18</span></div><div class="p"><audio controls preload="none" src="media/innovatl-loop-simply-stringy.mp3"></audio></div></li>
+          <li><div class="t"><b>Punknet</b><span class="meta">Loop · 0:13</span></div><div class="p"><audio controls preload="none" src="media/innovatl-loop-punknet.mp3"></audio></div></li>
+          <li><div class="t"><b>Moon String</b><span class="meta">Loop · 0:08</span></div><div class="p"><audio controls preload="none" src="media/innovatl-loop-moon-string.mp3"></audio></div></li>
+          </ul></details>
           <div class="btns">
             <a class="btn primary" data-link="innovatlVideo" href="#" target="_blank" rel="noopener" hidden>Watch</a>
           </div>
@@ -522,16 +623,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
 
     <div class="deck">
-      <article class="gcard" data-tags="narrative level">
-        <div class="gallery"><div class="stage">
-          <figure class="shot" style="--c:var(--nar)"><img src="images/hullghosts-2.webp" alt="Hull Ghosts: ship cabin with a skeleton and blood" loading="lazy"><figcaption>Hull Ghosts · cabin</figcaption></figure>
-          <figure class="shot" style="--c:var(--nar)" hidden><img src="images/hullghosts-1.webp" alt="Hull Ghosts: dark ship hold" loading="lazy"><figcaption>Hull Ghosts · hold</figcaption></figure>
-        </div><div class="thumbs"></div></div>
-        <div class="titlebar"><h4>Hull Ghosts</h4><span class="pips"><i class="pip" data-t="narrative"></i><i class="pip" data-t="level"></i></span></div>
-        <div class="type">Horror · Story Game</div>
-        <p>A horror story game I’m building on my own. These are screenshots from the work in progress.</p>
-        <div class="foot"><span>Solo</span><span>In progress</span></div>
-      </article>
 
       <article class="gcard" data-tags="narrative">
         <div class="gallery"><div class="stage">
@@ -568,19 +659,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="foot"><span>Team</span><a data-link="auraVideo" href="#" target="_blank" rel="noopener" hidden>Watch cutscene →</a></div>
       </article>
 
-      <article class="gcard" data-tags="art">
-        <div class="gallery"><div class="stage">
-          <figure class="shot" style="--c:var(--art)"><img src="images/model-render.webp" alt="Treasure chest, lyre, and pirate gun rendered in Unreal Engine" loading="lazy"><figcaption>Final render</figcaption></figure>
-          <figure class="shot contain" style="--c:var(--art)" hidden><img src="images/model-wireframe.webp" alt="Wireframes of the lyre, pirate gun, and chest" loading="lazy"><figcaption>Wireframes</figcaption></figure>
-          <figure class="shot contain" style="--c:var(--art)" hidden><img src="images/uv-lyre.webp" alt="UV layout for the lyre body" loading="lazy"><figcaption>Lyre UVs</figcaption></figure>
-          <figure class="shot contain" style="--c:var(--art)" hidden><img src="images/uv-gun.webp" alt="UV layout for the pirate gun body" loading="lazy"><figcaption>Pirate gun UVs</figcaption></figure>
-          <figure class="shot" style="--c:var(--art)" hidden><img src="images/ue5-landscape.webp" alt="Desert landscape with cacti built in Unreal Engine 5" loading="lazy"><figcaption>UE5 desert landscape</figcaption></figure>
-        </div><div class="thumbs"></div></div>
-        <div class="titlebar"><h4>3D Props</h4><span class="pips"><i class="pip" data-t="art"></i></span></div>
-        <div class="type">Modeling · Unreal Render</div>
-        <p>A lyre, a pirate gun, and a treasure chest, modeled and UV-unwrapped in Maya and rendered in Unreal Engine. Also a desert landscape built in UE5.</p>
-        <div class="foot"><span>Maya · UE5</span><span>5 images</span></div>
-      </article>
     </div>
     <p class="empty" id="empty" hidden>No projects with that tag yet.</p>
 
@@ -691,7 +769,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <li><b>Organa Tales rulebook</b><span>Rules · Worldbuilding</span><small>30 pages and growing. <a href="https://docs.google.com/document/d/11k6bkew6y-Gj9xx-U_87nwutNHJuElmpIhWjphGI6XY/edit?usp=sharing" target="_blank" rel="noopener">Read it on Google Docs →</a></small></li>
         <li><b>Lyram storybook</b><span>World · Characters</span><small>In-game pages for the world and its musicians. <a href="#lyram">See them →</a></small></li>
         <li><b>Tide Wars</b><span>Story · Characters</span><small>Antagonist development and character sheets.</small></li>
-        <li><b>Hull Ghosts</b><span>Horror · Solo</span><small>A horror story game in progress.</small></li>
+        <li><b>Hull Ghosts design doc</b><span>Story · Characters · Levels</span><small>11 pages: high concept, the history of Gambler’s Groove, and the hero and antagonist. <a href="docs/hull-ghosts-gdd.pdf" target="_blank" rel="noopener">Read the PDF →</a></small></li>
         <li data-link-row="writingSample1" hidden><b data-link-label="writingSample1">Writing sample</b><span>Script</span><small><a data-link="writingSample1" href="#" target="_blank" rel="noopener">Read →</a></small></li>
       </ul>
       <div>

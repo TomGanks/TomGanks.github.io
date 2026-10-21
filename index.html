@@ -313,6 +313,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .listen-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;margin-bottom:8px}
 .audio-lib{margin-top:72px;padding-top:48px;border-top:1px solid var(--line)}
 .audio-lead{margin-bottom:64px}
+.intro-title{font-size:var(--s3);text-transform:uppercase;margin:0 0 20px}
+.intro-row{display:grid;grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:20px 40px;align-items:center}
+.intro-row>p{color:var(--muted);max-width:52ch;margin:0}
+@media (max-width:860px){.intro-row{grid-template-columns:minmax(0,1fr)}}
 .audio-intro.lead-in{margin:8px 0 48px}
 .audio-lib.first>.block-h:first-child{margin-top:0}
 .music-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
@@ -637,8 +641,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p class="desc" style="color:var(--muted)">Press play for a walkthrough of the deck and how it plays.</p>
           <dl class="stats">
             <dt>Tools</dt><dd>Tabletop Simulator · Photoshop · Maya</dd>
+            <dt>Steam</dt><dd>435 subscribers · in 16 Workshop collections</dd>
             <dt>Shows</dt><dd>Card and ability design, art, playable prototype</dd>
           </dl>
+          <div class="btns">
+            <a class="btn primary" href="https://steamcommunity.com/sharedfiles/filedetails/?id=2901082673" target="_blank" rel="noopener">See it on Steam Workshop</a>
+          </div>
         </div>
       </article>
 
@@ -768,16 +776,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
     <div class="audio-lib" id="audio-library" data-lib="audio">
     <div class="audio-intro" id="audio-intro">
-    <div class="sec-head lib-head">
-      <div>
-        <div class="eyebrow">Audio library · made in Logic Pro with ES2 and Alchemy</div>
-        <h2>Sound &amp; Music</h2>
-      </div>
-      <p>Sound design and music are kept apart so each can be judged on its own. Every clip says what I was responsible for, what the sound had to do for the player, and how I built it. Sound on.</p>
-    </div>
+    <h2 class="intro-title">Sound &amp; Music</h2>
+    <div class="intro-row">
     <div class="cert">
       <div class="badge"><img class="b-dark" src="images/wwise-fundamentals-rev.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"><img class="b-light" src="images/wwise-fundamentals-rgb.png" alt="Wwise Fundamentals Certified 2024.1 badge" width="272" height="301"></div>
       <div><b>Wwise Fundamentals Certified</b><span>Audiokinetic · Wwise 2024.1 · September 2026</span><span class="id">Certificate ID b005a0b7-ef21-dc37-d82f-c47d3c56ede4</span></div>
+    </div>
+    <p>Sound design and music are kept apart so each can be judged on its own. Every clip says what I was responsible for, what the sound had to do for the player, and how I built it. Sound on.</p>
     </div>
     </div>
 

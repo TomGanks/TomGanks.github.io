@@ -158,6 +158,7 @@ section{padding-block:clamp(48px,7vw,88px)}
   color-mix(in srgb,var(--c,var(--muted)) 8%,var(--surface));border-radius:8px;overflow:hidden;aspect-ratio:16/9;max-width:100%}
 .shot img{width:100%;height:100%;object-fit:cover;position:relative;z-index:1}
 .shot.contain img{object-fit:contain;background:var(--surface)}
+.shot.native img{object-fit:scale-down;background:var(--surface)}
 .shot figcaption{position:absolute;left:10px;right:10px;bottom:8px;font-family:var(--f-mono);font-size:.72rem;color:var(--muted);z-index:0}
 .shot.missing figcaption{z-index:2}
 .shot video{width:100%;height:100%;object-fit:contain;background:#000;position:relative;z-index:1;display:block}
@@ -629,8 +630,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         <div class="media" style="--c:var(--sys)">
           <div class="stage">
             <figure class="shot" data-slide="0"><video controls playsinline preload="none" poster="images/poster-paindeck.jpg"><source src="media/paindeck-walkthrough.mp4" type="video/mp4"></video><figcaption>Walkthrough · 4:47</figcaption></figure>
-            <figure class="shot" data-slide="1" hidden><img src="images/paindeck-1.webp" alt="Pain villain deck laid out in Tabletop Simulator" loading="lazy"><figcaption>Board layout</figcaption></figure>
-            <figure class="shot" data-slide="2" hidden><img src="images/paindeck-2.webp" alt="Pain deck cards and player guide in Tabletop Simulator" loading="lazy"><figcaption>Cards and guide</figcaption></figure>
+            <figure class="shot native" data-slide="1" hidden><img src="images/paindeck-steam.webp" alt="Pain Deck cover art on the Steam Workshop" loading="lazy"><figcaption>Steam Workshop cover</figcaption></figure>
+            <figure class="shot" data-slide="2" hidden><img src="images/paindeck-1.webp" alt="Pain villain deck laid out in Tabletop Simulator" loading="lazy"><figcaption>Board layout</figcaption></figure>
+            <figure class="shot" data-slide="3" hidden><img src="images/paindeck-2.webp" alt="Pain deck cards and player guide in Tabletop Simulator" loading="lazy"><figcaption>Cards and guide</figcaption></figure>
           </div>
           <div class="thumbs"></div>
         </div>
